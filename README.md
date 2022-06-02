@@ -6,11 +6,7 @@ Note: I didn't focus on front-end much.
 
 ## Creating a new app
 ```
-npm init create-sojeb-express-ts-app hello-world
-```
-Yarn users
-```
-yarn create create-sojeb-express-ts-app hello-world
+npx create-sojeb-express-ts-app hello-world
 ```
 
 # Contribute
