@@ -13,7 +13,7 @@ const runCommand = (command) => {
 };
 
 const repoName = process.argv[2];
-const gitCheckoutCommand = `git clone --depth 1 https://github.com/SojebSikder/create-express-ts-app ${repoName}`;
+const gitCheckoutCommand = `git clone --depth 1 https://github.com/SojebSikder/create-sojeb-express-ts-app ${repoName}`;
 const installDepsCommand = `cd ${repoName} && yarn install`;
 
 console.log(`Creating new project ${repoName}`);
