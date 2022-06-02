@@ -1,6 +1,7 @@
 <div align="center">
 
-[![npm-image]][npm-url] ![][typescript-image] [![synk-image]][synk-url]![issue]
+[![npm-image]][npm-url] ![][typescript-image] [![synk-image]][synk-url]
+[![GitHub issues](https://img.shields.io/github/issues/SojebSikder/create-sojeb-express-ts-app?style=for-the-badge)](https://github.com/SojebSikder/create-sojeb-express-ts-app/issues)
 
 </div>
 
@@ -87,4 +88,3 @@ If you find any problem please create an issue.
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [synk-image]: https://img.shields.io/snyk/vulnerabilities/github/SojebSikder/create-sojeb-express-ts-app?label=Synk%20Vulnerabilities&style=for-the-badge
 [synk-url]: https://snyk.io/test/github/SojebSikder/create-sojeb-express-ts-app?targetFile=package.json "synk"
-[issue]: https://img.shields.io/github/issues/SojebSikder/create-sojeb-express-ts-app

@@ -21,6 +21,7 @@ import { PostService } from "./controllers/post/post.service";
 // initialize
 dotenv.config();
 const app = express();
+app.disable('x-powered-by');
 const server = http.createServer(app);
 
 // socket creation
