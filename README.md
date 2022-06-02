@@ -1,4 +1,4 @@
-# create-express-ts-app
+# create-sojeb-express-ts-app
 
 Boilerplate to create a new Express typescript project
 
