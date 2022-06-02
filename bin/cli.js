@@ -24,6 +24,10 @@ console.log(`Installing dependencies for ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
 if (!installedDeps) process.exit(-1);
 
+console.log(`copying .env.example to .env`);
+const copiedEnv = runCommand(`cp ${repoName}/.env.example ${repoName}/.env`);
+if (!copiedEnv) process.exit(-1);
+
 console.log(
   `${repoName} created successfully. Follow the following commands to start`
 );
