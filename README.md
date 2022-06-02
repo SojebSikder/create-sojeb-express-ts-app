@@ -4,6 +4,20 @@ Boilerplate to create a new Express typescript project
 
 Note: I didn't focus on front-end much.
 
+## Creating a new app
+```
+npm init create-sojeb-express-ts-app hello-world
+```
+Yarn users
+```
+yarn create create-sojeb-express-ts-app hello-world
+```
+
+# Contribute
+---
+If you want to contribute clone the repo
+(https://github.com/SojebSikder/create-express-ts-app), create new branch and make pull request.
+After clone the repo follow:
 ## Installing
 
 ```
