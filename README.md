@@ -1,6 +1,6 @@
-# nodejs-blog
+# create-express-ts-app
 
-A blog application created using nodejs (typescript).
+Boilerplate to create a new Express typescript project
 
 Note: I didn't focus on front-end much.
 

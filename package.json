@@ -1,10 +1,12 @@
 {
   "name": "create-express-ts-app",
   "version": "1.0.0",
+  "description": "Boilerplate to create a new Express typescript project",
   "repository": "https://github.com/SojebSikder/nodejs-blog.git",
   "main": "app.js",
   "author": "Sojeb Sikder <sojebsikder@gmail.com>",
   "license": "MIT",
+  "bin": "./bin/cli.js",
   "scripts": {
     "watch": "ts-node app.ts --watch",
     "start": "ts-node app.ts",
