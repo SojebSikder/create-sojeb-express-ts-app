@@ -13,6 +13,10 @@ const runCommand = (command) => {
 };
 
 const repoName = process.argv[2];
+if (!repoName) {
+  console.error("Please provide a project name");
+  process.exit(-1);
+}
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/SojebSikder/create-sojeb-express-ts-app ${repoName}`;
 const installDepsCommand = `cd ${repoName} && yarn install`;
 
@@ -20,9 +24,12 @@ console.log(`Creating new project ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
 if (!checkedOut) process.exit(-1);
 
-console.log(`deleting lock file for ${repoName}`);
+console.log(`deleting lock files for ${repoName}`);
 const deletedLockFile = runCommand(`rm -rf ${repoName}/yarn.lock`);
 if (!deletedLockFile) process.exit(-1);
+
+const deletedNpmLockFile = runCommand(`rm -rf ${repoName}/package-lock.json`);
+if (!deletedNpmLockFile) process.exit(-1);
 
 console.log(`Installing dependencies for ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
