@@ -3,28 +3,28 @@ import { env } from "../../system/util";
 import { PostService } from "./post.service";
 
 export class PostController {
-  constructor(private postService: PostService) {}
+  constructor() {}
   /**
    * show all data
    * @param req
    * @param res
    */
-  index = async (req: Request, res: Response) => {
-    const result = await this.postService.index();
+  async index(req: Request, res: Response) {
+    const result = await PostService.getInstance().index();
     res.render("index", { posts: result });
-  };
+  }
 
   /**
    * show specific data
    * @param req
    * @param res
    */
-  show = async (req: Request, res: Response) => {
+  async show(req: Request, res: Response) {
     const id = req.params.id;
-    const result = await this.postService.show(id);
+    const result = await PostService.getInstance().show(id);
     res.locals.title = `${result.title} - ${env("APP_NAME")}`;
     res.render("post/postSingle", { post: result });
-  };
+  }
 
   /**
    * store data
@@ -32,7 +32,7 @@ export class PostController {
    * @param res
    */
   store = async (req: Request, res: Response) => {
-    await this.postService.store(req, res);
+    await PostService.getInstance().store(req, res);
 
     res.render("post/addPost", {
       message: "Post has been added successfully",

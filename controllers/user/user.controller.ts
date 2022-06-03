@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { env } from "../../system/util";
+import { Authenticate } from "../../middlewares/common/authenticate";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +25,7 @@ export class UserController {
    * @param req
    * @param res
    */
-  async login(req: Request, res: Response) {
+  login = async (req: Request, res: Response) => {
     try {
       const email = req.body.email;
       const password = req.body.password;
@@ -47,9 +48,7 @@ export class UserController {
           };
 
           // generate token
-          const token = jwt.sign(userObject, env("JWT_SECRET"), {
-            expiresIn: env("JWT_EXPIRY"),
-          });
+          const token = Authenticate.generateAccessToken(userObject);
 
           // set cookie
           res.cookie(env("COOKIE_NAME"), token, {
@@ -77,7 +76,7 @@ export class UserController {
         message: error,
       });
     }
-  }
+  };
 
   /**
    * Show Register page /get method
@@ -94,7 +93,7 @@ export class UserController {
    * @param req
    * @param res
    */
-  async register(req: Request, res: Response) {
+  register = async (req: Request, res: Response) => {
     try {
       const name = req.body.name;
       const email = req.body.email;
@@ -118,15 +117,15 @@ export class UserController {
         message: error,
       });
     }
-  }
+  };
 
   // do logout
-  logout(req: Request, res: Response) {
+  logout = (req: Request, res: Response) => {
     res.clearCookie(env("COOKIE_NAME"));
     res.render("auth/login", {
       message: "Logged out successfully",
     });
-  }
+  };
 
   // show profile page
   showProfilePage(req: Request, res: Response) {

@@ -5,11 +5,24 @@ import { Auth } from "../../system/core";
 const prisma = new PrismaClient();
 
 export class PostService {
+  private static _instance: PostService;
+
   constructor() {}
+
+  /**
+   * Create instance
+   * @returns {PostService}
+   */
+  public static getInstance() {
+    if (!this._instance) {
+      this._instance = new this();
+    }
+    return this._instance;
+  }
   /**
    * show all data
    */
-  async index() {
+  public async index() {
     const result = await prisma.post.findMany();
     return result;
   }

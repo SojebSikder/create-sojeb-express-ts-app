@@ -5,7 +5,7 @@ import { PostService } from "../controllers/post/post.service";
 import { decorateHtmlResponse } from "../middlewares/common/decorateHtmlResponse";
 
 const router = express.Router();
-const controller = new PostController(new PostService());
+const controller = new PostController();
 
 router.get("/", decorateHtmlResponse(), controller.index);
 router.get("/post/add", decorateHtmlResponse(), controller.showAddPostPage);
