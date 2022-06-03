@@ -5,18 +5,18 @@ import { IAdapter } from "./iAdapter";
 
 export class MySQLAdapter implements IAdapter {
   public host = env("DB_HOST");
-  public user = env("DB_USER");
-  public pass = env("DB_PASS");
-  public dbname = env("DB_NAME");
+  public user = env("DB_USERNAME");
+  public pass = env("DB_PASSWORD");
+  public dbname = env("DB_DATABASE");
 
   public connection;
   public error;
 
-  public __construct() {
+  constructor() {
     this.connectDB();
   }
 
-  private connectDB() {
+  private connectDB = () => {
     this.connection = mysql.createConnection({
       host: this.host,
       user: this.user,
@@ -31,69 +31,107 @@ export class MySQLAdapter implements IAdapter {
       }
       console.log("Connected!");
     });
-  }
+  };
 
   // Select or Read data
-  public select(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) {
-        throw err;
-      }
-      if (result.length > 0) {
-        return result;
-      } else {
-        return false;
+  public select = async (query) => {
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, (err, result, fields) => {
+          if (err) reject(err);
+          if (result.length > 0) {
+            resolve(result);
+          } else {
+            resolve(false);
+          }
+        });
+      } catch (error) {
+        reject(error);
       }
     });
-  }
+  };
 
   // Select or Read data
   public selectOne(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) {
-        throw err;
-      }
-      if (result.length > 0) {
-        return result[0];
-      } else {
-        return false;
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, function (err, result) {
+          if (err) {
+            reject(err);
+          }
+          if (result.length > 0) {
+            resolve(result[0]);
+          } else {
+            resolve(false);
+          }
+        });
+      } catch (error) {
+        reject(error);
       }
     });
   }
 
   // // Insert data
   public insert(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) {
-        throw err;
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, function (err, result) {
+          if (err) {
+            reject(err);
+          }
+          resolve(result);
+        });
+      } catch (error) {
+        reject(error);
       }
-      return result;
     });
   }
 
   // Update data
   public update(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) throw err;
-      return result;
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, function (err, result) {
+          if (err) reject(err);
+          resolve(result);
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 
   // Delete data
   public delete(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) throw err;
-      return result;
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, function (err, result) {
+          if (err) reject(err);
+          resolve(result);
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 
   // query statement data
   public statement(query) {
-    this.connection.query(query, function (err, result) {
-      if (err) throw err;
-      return result;
+    // returns a promise
+    return new Promise((resolve, reject) => {
+      try {
+        this.connection.query(query, function (err, result) {
+          if (err) resolve(err);
+          resolve(result);
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 }
-
-// module.exports = MySQLAdapter;

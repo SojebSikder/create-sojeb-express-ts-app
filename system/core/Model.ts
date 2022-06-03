@@ -5,7 +5,7 @@ export class Model extends Builder {
   /**
    * db property
    */
-  public db: Dbase;
+  public static db: Dbase;
 
   constructor() {
     super();

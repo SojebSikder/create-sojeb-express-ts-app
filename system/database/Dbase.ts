@@ -1,15 +1,15 @@
 import { IAdapter } from "../database/drivers/iAdapter";
 export class Dbase {
-  protected adapter;
+  protected adapter: IAdapter;
 
   constructor(adapter: IAdapter) {
     this.adapter = adapter;
   }
 
   // Select or Read data
-  public select(query) {
-    return this.adapter.select(query);
-  }
+  public select = async(query) => {
+    return await this.adapter.select(query);
+  };
 
   // Select or Read single data
   public selectOne(query) {
@@ -36,4 +36,3 @@ export class Dbase {
     return this.adapter.statement(query);
   }
 }
-
