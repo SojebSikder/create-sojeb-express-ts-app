@@ -1,4 +1,4 @@
-import { Uploader } from "../../system/storage/uploader";
+import { Uploader } from "../../system/storage";
 
 export function attachmentUpload(req, res, next) {
   const upload = Uploader.upload(

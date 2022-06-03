@@ -1,4 +1,4 @@
-import env from "../system/util/env";
+import { env } from "../system/util";
 
 // local disk storage for development
 const filesystemConfig = {

@@ -1,6 +1,6 @@
 import mysql from "mysql";
 
-import env from "../../util/env";
+import { env } from "../../util";
 import { IAdapter } from "./iAdapter";
 
 export class MySQLAdapter implements IAdapter {

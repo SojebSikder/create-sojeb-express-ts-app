@@ -12,7 +12,7 @@ import { buildSchema } from "graphql";
 // internal imports
 import { config } from "./config/app";
 import { routes } from "./router";
-import env from "./system/util/env";
+import { env } from "./system/util";
 
 // middleware
 import { logger } from "./middlewares/logger";
@@ -21,7 +21,7 @@ import { PostService } from "./controllers/post/post.service";
 // initialize
 dotenv.config();
 const app = express();
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 const server = http.createServer(app);
 
 // socket creation

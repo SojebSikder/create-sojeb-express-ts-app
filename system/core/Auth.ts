@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import env from "../util/env";
+import { env } from "../util/env";
 
 export class Auth {
   /**

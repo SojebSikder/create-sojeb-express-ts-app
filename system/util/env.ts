@@ -4,6 +4,6 @@
  * @param {*} defaultValue
  * @returns
  */
-export default function env(key, defaultValue = null) {
+export function env(key, defaultValue = null) {
   return process.env[key] || defaultValue;
 }

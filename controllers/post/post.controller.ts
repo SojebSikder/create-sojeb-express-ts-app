@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import env from "../../system/util/env";
+import { env } from "../../system/util";
 import { PostService } from "./post.service";
 
 export class PostController {

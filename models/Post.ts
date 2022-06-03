@@ -1,4 +1,4 @@
-import { ORM } from "../system/core/ORM/ORM";
+import { ORM } from "../system/core/ORM";
 
 export class Post extends ORM {
   constructor() {
