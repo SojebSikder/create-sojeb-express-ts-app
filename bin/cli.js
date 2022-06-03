@@ -20,6 +20,10 @@ console.log(`Creating new project ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
 if (!checkedOut) process.exit(-1);
 
+console.log(`deleting lock file for ${repoName}`);
+const deletedLockFile = runCommand(`rm -rf ${repoName}/yarn.lock`);
+if (!deletedLockFile) process.exit(-1);
+
 console.log(`Installing dependencies for ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
 if (!installedDeps) process.exit(-1);
