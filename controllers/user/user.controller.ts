@@ -48,6 +48,8 @@ export class UserController {
 
           // generate token
           const token = Auth.generateAccessToken(userObject);
+          // generate refresh token
+          const refreshToken = Auth.generateRefreshAccessToken(userObject);
 
           // set cookie
           res.cookie(env("COOKIE_NAME"), token, {

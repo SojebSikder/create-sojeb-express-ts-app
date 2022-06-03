@@ -4,14 +4,15 @@ import { env } from "../util/env";
 
 export class Auth {
   constructor() {}
+
   /**
-   * authenticate using jwt token
+   * authToken middleware. using this authenticate using jwt token
    * @param req
    * @param res
    * @param next
    * @returns
    */
-  static authenticateToken(req, res, next) {
+  static authToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null) return res.sendStatus(401);
@@ -37,15 +38,25 @@ export class Auth {
 
     return token;
   }
+
   /**
-   * Get data from jwt token
-   * @param req
-   * @param res
+   * Generate jwt refresh access token
+   * @param user
    * @returns
    */
-  static get(req, res) {
-    let cookies =
-      Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+  static generateRefreshAccessToken(user) {
+    // generate refresh token
+    const token = jwt.sign(user, authConfig.guards.jwt.refresh_secret);
+
+    return token;
+  }
+
+  /**
+   * Get decoded data from jwt token
+   * @returns
+   */
+  static get(signedCookies) {
+    let cookies = Object.keys(signedCookies).length > 0 ? signedCookies : null;
 
     if (cookies) {
       try {

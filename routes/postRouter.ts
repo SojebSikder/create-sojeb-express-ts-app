@@ -3,6 +3,7 @@ import { PostController } from "../controllers/post/post.controller";
 import { PostService } from "../controllers/post/post.service";
 
 import { decorateHtmlResponse } from "../middlewares/common/decorateHtmlResponse";
+import { Auth } from "../system/core";
 
 const router = express.Router();
 const controller = new PostController();
