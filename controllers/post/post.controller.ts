@@ -3,18 +3,12 @@ import env from "../../system/util/env";
 import { PostService } from "./post.service";
 
 export class PostController {
-  // constructor(private readonly postService: PostService) {}
   constructor(private postService: PostService) {}
   /**
    * show all data
    * @param req
    * @param res
    */
-  // async index(req: Request, res: Response) {
-  //   // const result = await new PostService().index();
-  //   const result = await this.postService.index();
-  //   res.render("index", { posts: result });
-  // }
   index = async (req: Request, res: Response) => {
     const result = await this.postService.index();
     res.render("index", { posts: result });
