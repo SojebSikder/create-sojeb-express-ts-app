@@ -1,4 +1,4 @@
-import { db as dbconfig } from "../../../config/database";
+import { dbConfig } from "../../../config/database";
 import { MySQLAdapter } from "../../database/drivers/MySQLAdapter";
 import { Dbase } from "../../database/Dbase";
 /**
@@ -22,7 +22,7 @@ export class Builder {
 
     let dbsw, driver;
     if ($switch == false) {
-      dbsw = dbconfig["connection"][dbconfig["default"]]["dbdriver"];
+      dbsw = dbConfig["connection"][dbConfig["default"]]["dbdriver"];
     } else {
       dbsw = $switch;
     }

@@ -1,5 +1,5 @@
 import { env } from "../system/util";
 
-export const config = {
+export const appConfig = {
   port: env("PORT", "3000"),
 };

@@ -1,6 +1,6 @@
 import { env } from "../system/util";
 
-export const db = {
+export const dbConfig = {
   /**
    * Default database connection name
    */

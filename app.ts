@@ -10,7 +10,7 @@ import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 
 // internal imports
-import { config } from "./config/app";
+import { appConfig } from "./config/app";
 import { routes } from "./router";
 import { env } from "./system/util";
 
@@ -70,6 +70,6 @@ app.use(
 //routes
 routes(app);
 
-app.listen(config.port, () => {
-  console.log(`Server is running on port ${config.port}`);
+app.listen(appConfig.port, () => {
+  console.log(`Server is running on port ${appConfig.port}`);
 });

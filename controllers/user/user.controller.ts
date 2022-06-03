@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { env } from "../../system/util";
-import { Authenticate } from "../../middlewares/common/authenticate";
+import { Auth } from "../../system/core";
 
 const prisma = new PrismaClient();
 
@@ -48,7 +47,7 @@ export class UserController {
           };
 
           // generate token
-          const token = Authenticate.generateAccessToken(userObject);
+          const token = Auth.generateAccessToken(userObject);
 
           // set cookie
           res.cookie(env("COOKIE_NAME"), token, {
