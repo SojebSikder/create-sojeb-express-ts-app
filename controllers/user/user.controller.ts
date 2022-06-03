@@ -25,7 +25,7 @@ export class UserController {
    * @param req
    * @param res
    */
-  login = async (req: Request, res: Response) => {
+  async login(req: Request, res: Response) {
     try {
       const email = req.body.email;
       const password = req.body.password;
@@ -76,7 +76,7 @@ export class UserController {
         message: error,
       });
     }
-  };
+  }
 
   /**
    * Show Register page /get method
