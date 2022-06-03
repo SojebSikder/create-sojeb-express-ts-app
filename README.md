@@ -31,7 +31,7 @@ npx create-sojeb-express-ts-app hello-world
 ---
 
 If you want to contribute clone the repo
-(https://github.com/SojebSikder/create-express-ts-app), create new branch and make pull request.
+(https://github.com/SojebSikder/create-sojeb-express-ts-app), create new branch and make pull request.
 After clone the repo follow:
 
 ## Installing
