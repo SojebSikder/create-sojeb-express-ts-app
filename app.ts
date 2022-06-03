@@ -12,7 +12,7 @@ import { buildSchema } from "graphql";
 // internal imports
 import { config } from "./config/app";
 import { routes } from "./router";
-import env from "./util/env";
+import env from "./system/util/env";
 
 // middleware
 import { logger } from "./middlewares/logger";

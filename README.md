@@ -18,6 +18,13 @@ Note: I didn't focus on front-end much.
 ```
 npx create-sojeb-express-ts-app hello-world
 ```
+## Configure
+
+- Set up database credentials in env file
+- run this command for database migration:
+  `npx prisma db push`
+- Migrate database using this command:
+  `npx prisma migrate dev`
 
 # Contribute
 

@@ -1,8 +1,18 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Boilerplate to create a new Express typescript project",
-  "repository": "https://github.com/SojebSikder/nodejs-blog.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SojebSikder/create-sojeb-express-ts-app.git"
+  },
+  "keywords": [
+    "create-sojeb-express-ts-app",
+    "express Boilerplate",
+    "typescript express",
+    "typescript express boilerplate"
+  ],
+  "homepage": "https://github.com/SojebSikder/create-sojeb-express-ts-app#readme",
   "main": "app.js",
   "author": "Sojeb Sikder <sojebsikder@gmail.com>",
   "license": "MIT",
