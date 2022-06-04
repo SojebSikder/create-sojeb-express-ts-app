@@ -2,9 +2,6 @@ import express from "express";
 import { PostController } from "../controllers/post/post.controller";
 
 import { decorateHtmlResponse } from "../middlewares/common/decorateHtmlResponse";
-import { Data } from "../models/Data";
-import { Mail } from "../system/core/Email";
-import { Redis } from "../system/database/facade/Redis";
 
 const router = express.Router();
 const controller = new PostController();
