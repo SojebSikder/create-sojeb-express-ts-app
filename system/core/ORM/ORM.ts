@@ -1,5 +1,5 @@
 import { DB } from "../../database/facade/DB";
-import { arrayToString } from "../../helper/ArrayHelper";
+import { arrayToString, arrayToStringWithQ } from "../../helper/ArrayHelper";
 
 export class ORM {
   /**
@@ -14,7 +14,21 @@ export class ORM {
   }
 
   /**
-   * Fetch all data
+   * insert data
+   */
+  public insert = async (objectData = {}) => {
+    let keys, values;
+
+    keys = arrayToString(Object.keys(objectData));
+    values = arrayToStringWithQ(Object.values(objectData));
+
+    const data = await DB.insert(
+      `insert ${this.table} (${keys}) values (${values})`
+    );
+    return data;
+  };
+  /**
+   * fetch all data
    */
   public all = async (columns = ["*"]) => {
     let column;

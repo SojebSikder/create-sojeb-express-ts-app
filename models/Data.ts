@@ -1,8 +1,8 @@
 import { ORM } from "../system/core/ORM";
 
-export class Post extends ORM {
+export class Data extends ORM {
   constructor() {
     // define table name
-    super(Post.name);
+    super("data");
   }
 }
