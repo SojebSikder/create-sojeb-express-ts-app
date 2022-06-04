@@ -31,6 +31,25 @@ export class ORM {
   };
 
   /**
+   * update data
+   */
+  public update = async (objectData) => {
+    let keys = "";
+    let values = "";
+    let set = "";
+
+    for (const [key, value] of Object.entries(objectData)) {
+      keys += key + ",";
+      values += "'" + value + "',";
+      set += key + "='" + value + "',";
+    }
+    set = set.slice(0, -1);
+
+    const data = DB.update(`update ${this.table} set ${set} ${this.whereC}`);
+    return data;
+  };
+
+  /**
    * where clause
    */
   public where(key, value) {
