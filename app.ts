@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
-//
+// graphql imports
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 

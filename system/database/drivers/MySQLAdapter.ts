@@ -1,13 +1,13 @@
 import mysql from "mysql";
 
-import { env } from "../../util";
+import { dbConfig } from "../../../config/database";
 import { IAdapter } from "./iAdapter";
 
 export class MySQLAdapter implements IAdapter {
-  public host = env("DB_HOST");
-  public user = env("DB_USERNAME");
-  public pass = env("DB_PASSWORD");
-  public dbname = env("DB_DATABASE");
+  public host = dbConfig.connection.mysql.host;
+  public user = dbConfig.connection.mysql.username;
+  public pass = dbConfig.connection.mysql.password;
+  public dbname = dbConfig.connection.mysql.database;
 
   public connection;
   public error;
