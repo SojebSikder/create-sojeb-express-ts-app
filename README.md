@@ -18,6 +18,7 @@ Note: I didn't focus on front-end much.
 ```
 npx create-sojeb-express-ts-app hello-world
 ```
+
 ## Configure
 
 - Set up database credentials in env file
@@ -81,6 +82,10 @@ nodemon app.ts
 - Express
 - Prisma
 - Mysql
+- redis
+- Nodemailer
+- jwt
+- graphql etc.
 
 ## For help and support
 
