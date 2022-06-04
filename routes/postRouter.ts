@@ -8,10 +8,10 @@ const router = express.Router();
 const controller = new PostController();
 
 router.get("/", async function (req, res) {
-  await new Data().insert({
-    text: "Hello",
-  });
-  const data = await new Data().all();
+  // await new Data().insert({
+  //   text: "Hello",
+  // });
+  const data = await new Data().where("id", "6").orWhere("id", "2").get();
   res.send(data);
 });
 // router.get("/", decorateHtmlResponse(), controller.index);
