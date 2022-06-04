@@ -68,7 +68,7 @@ export class ORM {
   /**
    * fetch all data
    */
-  public all = async (columns = ["*"]) => {
+  public async all(columns = ["*"]) {
     let column;
     if (Array.isArray(columns)) {
       column = arrayToString(columns);
@@ -77,5 +77,5 @@ export class ORM {
     }
     const data = await DB.select(`select ${column} from ${this.table}`);
     return data;
-  };
+  }
 }

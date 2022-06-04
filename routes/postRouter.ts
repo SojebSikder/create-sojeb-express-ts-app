@@ -11,8 +11,8 @@ router.get("/", async function (req, res) {
   // await new Data().insert({
   //   text: "Hello",
   // });
-  const data = await new Data().where("id", "6").orWhere("id", "2").get();
-  res.send(data);
+  const data = await new Data().all();
+  res.json({ data });
 });
 // router.get("/", decorateHtmlResponse(), controller.index);
 router.get("/post/add", decorateHtmlResponse(), controller.showAddPostPage);
