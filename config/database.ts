@@ -20,7 +20,8 @@ export const dbConfig = {
       password: env("DB_PASSWORD", ""),
     },
     /**
-     * Redis database connection
+     * Redis database connection (Use Redis using Redis static class)
+     * example: Redis.get("key")
      */
     redis: {
       default: {
