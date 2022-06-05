@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { env } from "../../system/util";
-import { Auth } from "../../system/core";
+import { UserService } from "./user.service";
 
 const prisma = new PrismaClient();
 
@@ -25,56 +25,28 @@ export class UserController {
    * @param res
    */
   async login(req: Request, res: Response) {
-    try {
-      const email = req.body.email;
-      const password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
 
-      const user = await prisma.user.findFirst({
-        where: {
-          email: String(email),
-        },
+    const result = await UserService.getInstance().login(email, password);
+
+    if (result.statusCode === 200) {
+      res.cookie(env("COOKIE_NAME"), result.token, {
+        maxAge: env("JWT_EXPIRY"),
+        httpOnly: true,
+        signed: true,
       });
 
-      if (user) {
-        const isValidPassword = await bcrypt.compare(password, user.password);
-
-        if (isValidPassword) {
-          // prepare the user object to generate token
-          const userObject = {
-            userid: user.id,
-            username: user.name,
-            email: user.email,
-          };
-
-          // generate token
-          const token = Auth.generateAccessToken(userObject);
-          // generate refresh token
-          const refreshToken = Auth.generateRefreshAccessToken(userObject);
-
-          // set cookie
-          res.cookie(env("COOKIE_NAME"), token, {
-            maxAge: env("JWT_EXPIRY"),
-            httpOnly: true,
-            signed: true,
-          });
-
-          // set logged in user local identifier
-          res.locals.loggedInUser = userObject;
-          // typeof foo == 'undefined'
-          res.redirect("/");
-        } else {
-          res.render("auth/login", {
-            message: "Invalid password",
-          });
-        }
-      } else {
-        res.render("auth/login", {
-          message: "Email not found.",
-        });
-      }
-    } catch (error) {
+      // set logged in user local identifier
+      res.locals.loggedInUser = result.data;
+      res.redirect("/");
+    } else if (result.statusCode === 401) {
       res.render("auth/login", {
-        message: error,
+        message: result.message,
+      });
+    } else if (result.statusCode === 500) {
+      res.render("auth/login", {
+        message: result.message,
       });
     }
   }
