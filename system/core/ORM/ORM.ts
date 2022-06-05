@@ -1,5 +1,9 @@
 import { DB } from "../../database/facade/DB";
-import { arrayToString, arrayToStringWithQ } from "../../helper/ArrayHelper";
+import {
+  arrayToString,
+  arrayToStringWithQ,
+  inArray,
+} from "../../helper/ArrayHelper";
 
 export class ORM {
   /**
@@ -7,47 +11,13 @@ export class ORM {
    *
    * @var string
    */
-  public table;
+  private table;
 
   private whereC = null;
 
   constructor(table) {
     this.table = table.toLowerCase();
   }
-
-  /**
-   * insert data
-   */
-  public insert = async (objectData = {}) => {
-    let keys, values;
-
-    keys = arrayToString(Object.keys(objectData));
-    values = arrayToStringWithQ(Object.values(objectData));
-
-    const data = await DB.insert(
-      `insert ${this.table} (${keys}) values (${values})`
-    );
-    return data;
-  };
-
-  /**
-   * update data
-   */
-  public update = async (objectData) => {
-    let keys = "";
-    let values = "";
-    let set = "";
-
-    for (const [key, value] of Object.entries(objectData)) {
-      keys += key + ",";
-      values += "'" + value + "',";
-      set += key + "='" + value + "',";
-    }
-    set = set.slice(0, -1);
-
-    const data = DB.update(`update ${this.table} set ${set} ${this.whereC}`);
-    return data;
-  };
 
   /**
    * where clause
@@ -76,9 +46,9 @@ export class ORM {
   /**
    * Fetch query data
    */
-  public get(columns = ["*"]) {
+  public async get(columns = ["*"]) {
     const column = arrayToString(columns);
-    const data = DB.select(
+    const data = await DB.select(
       `select ${column} from ${this.table} ${this.whereC}`
     );
 
@@ -96,5 +66,111 @@ export class ORM {
     }
     const data = await DB.select(`select ${column} from ${this.table}`);
     return data;
+  }
+
+  /**
+   * insert data
+   */
+  public async create(objectData = {}) {
+    let keys, values;
+
+    keys = arrayToString(Object.keys(objectData));
+    values = arrayToStringWithQ(Object.values(objectData));
+
+    const data = await DB.insert(
+      `insert ${this.table} (${keys}) values (${values})`
+    );
+    return data;
+  }
+
+  /**
+   * update data
+   */
+  public async update(objectData) {
+    let keys = "";
+    let values = "";
+    let set = "";
+
+    for (const [key, value] of Object.entries(objectData)) {
+      keys += key + ",";
+      values += "'" + value + "',";
+      set += key + "='" + value + "',";
+    }
+    set = set.slice(0, -1);
+
+    const data = DB.update(`update ${this.table} set ${set} ${this.whereC}`);
+    return data;
+  }
+
+  /**
+   * save query data
+   */
+  public async save() {
+    const tableName = this.table;
+
+    const propsToImplode = [];
+
+    const properties = Reflect.ownKeys(this);
+
+    for (const property of properties) {
+      if (!inArray(property, ["table", "whereC"])) {
+        propsToImplode[property] = this[property];
+      }
+    }
+
+    /**
+     * insert data
+     */
+    if (this.whereC == null) {
+      let sqlQuery = "";
+
+      const keys = arrayToString(Object.keys(propsToImplode));
+      const values = arrayToStringWithQ(Object.values(propsToImplode));
+
+      sqlQuery = `INSERT INTO  ${tableName} (${keys}) VALUES  (${values})`;
+
+      const data = await DB.insert(sqlQuery);
+      return data;
+    }
+    // update data
+    else {
+      let keys = "";
+      let values = "";
+      let set = "";
+
+      for (const [key, value] of Object.entries(propsToImplode)) {
+        keys += key + ",";
+        values += "'" + value + "',";
+        set += key + "='" + value + "',";
+      }
+      set = set.slice(0, -1);
+
+      const data = await DB.update(
+        `update ${tableName} set ${set} ${this.whereC}`
+      );
+      return data;
+    }
+  }
+
+  /**
+   * delete query data
+   */
+  public async delete() {
+    const tableName = this.table;
+
+    /**
+     * delete data
+     */
+    if (this.whereC == null) {
+      const sqlQuery = `DELETE FROM ${tableName}`;
+
+      const data = await DB.delete(sqlQuery);
+      return data;
+    }
+    // delete specific data
+    else {
+      const data = await DB.delete(`DELETE FROM ${tableName} ${this.whereC}`);
+      return data;
+    }
   }
 }

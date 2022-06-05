@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter";
 // middleware
 import { decorateHtmlResponse } from "./middlewares/common/decorateHtmlResponse";
 import { attachmentUpload } from "./middlewares/common/upload";
+import { Data } from "./models/Data";
 
 /**
  * Init all routes
@@ -14,6 +15,16 @@ import { attachmentUpload } from "./middlewares/common/upload";
  */
 export function routes(app: Express) {
   // just for test
+  app.get("/test", async function (req, res) {
+    const result = new Data();
+    result.title = "sojeb";
+    result.text = "hello sikder";
+    await result.save();
+
+    const data = await new Data().all();
+    res.json({ data });
+  });
+
   app.get(
     "/upload",
     decorateHtmlResponse(),
