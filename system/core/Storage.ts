@@ -1,6 +1,6 @@
 import filesystemConfig from "../../config/filesystems";
-import { StorageClass } from "../storage/StorageClass";
-import { LocalAdapter } from "../storage/drivers/LocalAdapter";
+import { StorageClass } from "./Disk/StorageClass";
+import { LocalAdapter } from "./Disk/drivers/LocalAdapter";
 
 /**
  * Storage class for handling storage

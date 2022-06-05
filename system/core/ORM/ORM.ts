@@ -15,8 +15,12 @@ export class ORM {
 
   private whereC = null;
 
-  constructor(table) {
-    this.table = table.toLowerCase();
+  constructor(table = null) {
+    if (table != null) {
+      this.table = table;
+    } else {
+      this.table = this.constructor.name.toLowerCase();
+    }
   }
 
   /**

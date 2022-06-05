@@ -16,10 +16,10 @@ import { Data } from "./models/Data";
 export function routes(app: Express) {
   // just for test
   app.get("/test", async function (req, res) {
-    const result = new Data();
-    result.title = "sojeb";
-    result.text = "hello sikder";
-    await result.save();
+    // const result = new Data();
+    // result.title = "sojeb";
+    // result.text = "hello sikder";
+    // await result.save();
 
     const data = await new Data().all();
     res.json({ data });
