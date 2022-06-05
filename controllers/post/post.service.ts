@@ -6,12 +6,8 @@ const prisma = new PrismaClient();
 
 export class PostService {
   private static _instance: PostService;
-
-  constructor() {}
-
   /**
    * Create instance
-   * @returns {PostService}
    */
   public static getInstance() {
     if (!this._instance) {

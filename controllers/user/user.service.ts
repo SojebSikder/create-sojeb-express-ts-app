@@ -6,11 +6,8 @@ const prisma = new PrismaClient();
 
 export class UserService {
   private static _instance: UserService;
-  constructor() {}
-
   /**
    * Create instance
-   * @returns {UsertService}
    */
   public static getInstance() {
     if (!this._instance) {
@@ -19,7 +16,7 @@ export class UserService {
     return this._instance;
   }
   /**
-   * Process login /post method
+   * Process login
    * @param req
    * @param res
    */
@@ -76,7 +73,7 @@ export class UserService {
   }
 
   /**
-   * Process register /post method
+   * Process register
    * @param req
    * @param res
    */

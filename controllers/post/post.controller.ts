@@ -3,7 +3,6 @@ import { env } from "../../system/util";
 import { PostService } from "./post.service";
 
 export class PostController {
-  constructor() {}
   /**
    * show all data
    * @param req

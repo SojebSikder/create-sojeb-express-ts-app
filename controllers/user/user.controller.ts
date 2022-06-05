@@ -7,8 +7,6 @@ import { UserService } from "./user.service";
 const prisma = new PrismaClient();
 
 export class UserController {
-  constructor() {}
-
   /**
    * Show Login page /get method
    * @param req
@@ -24,13 +22,14 @@ export class UserController {
    * @param req
    * @param res
    */
-  async login(req: Request, res: Response) {
+  async signin(req: Request, res: Response) {
     const email = req.body.email;
     const password = req.body.password;
 
     const result = await UserService.getInstance().login(email, password);
 
     if (result.statusCode === 200) {
+      // after sucessfull login set cookie
       res.cookie(env("COOKIE_NAME"), result.token, {
         maxAge: env("JWT_EXPIRY"),
         httpOnly: true,
@@ -66,7 +65,7 @@ export class UserController {
    * @param req
    * @param res
    */
-  register = async (req: Request, res: Response) => {
+  async signup(req: Request, res: Response) {
     try {
       const name = req.body.name;
       const email = req.body.email;
@@ -90,15 +89,15 @@ export class UserController {
         message: error,
       });
     }
-  };
+  }
 
   // do logout
-  logout = (req: Request, res: Response) => {
+  async logout(req: Request, res: Response) {
     res.clearCookie(env("COOKIE_NAME"));
     res.render("auth/login", {
       message: "Logged out successfully",
     });
-  };
+  }
 
   // show profile page
   showProfilePage(req: Request, res: Response) {

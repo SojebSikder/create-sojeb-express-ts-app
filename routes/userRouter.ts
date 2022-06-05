@@ -7,9 +7,9 @@ const router = express.Router();
 const controller = new UserController();
 
 router.get("/login", controller.showLoginPage);
-router.post("/login", decorateHtmlResponse("login"), controller.login);
+router.post("/login", decorateHtmlResponse("login"), controller.signin);
 router.get("/register", controller.showRegisterPage);
-router.post("/register", controller.register);
+router.post("/register", controller.signup);
 router.get("/logout", controller.logout);
 router.get("/profile", controller.showProfilePage);
 
