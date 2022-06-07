@@ -13,32 +13,28 @@ export class AppCommand {
     /**
      * Predefined Command
      */
-    Command.set("test", function () {
-      Command.ask("What is your name? ", function (value) {
-        Command.success(`Hello ${value}`);
-        Command.ask("What is your name? ", function (value2) {
-          Command.success(`Hello ${value2}`);
-          // exit the console
-          process.exit();
+    Command.set("ask", function () {
+      Command.ask(function (rl) {
+        rl.question("What is your name ", function (name) {
+          Command.success(`Hello ${name}`);
+          rl.question("what is your age ", function (age) {
+            Command.success(`${name} You are ${age} years old`);
+            rl.close();
+          });
         });
       });
     })
       .describe("Test command")
       .usage("test");
 
-    Command.set("--version", function () {
-      Command.comment(`Spress Version 0.0.1`);
-    }).describe("Displays Spress version");
-
-    Command.set("-v", function () {
-      Command.comment(`Spress 0.0.1`);
-    }).describe("Displays Spress version");
-
     /**
      * list
      */
     Command.set("list", function () {
       const cmd = Command.customCmdArray;
+      const desc = Command.description;
+      const usage = Command.usageInfo;
+      Command.comment("Available commands");
 
       let i = 0;
       for (const key in cmd) {

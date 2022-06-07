@@ -1,10 +1,5 @@
-import readline from "readline";
+import readline, { ReadLine } from "readline";
 import { AppCommand } from "../../AppCommand";
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 
 /**
  * Command Class
@@ -66,32 +61,53 @@ export class Command {
   }
 
   /**
-   * Output Functions
+   * Output comment with color yellow
    */
   public static comment(text) {
     console.log(`${this.yellow}${text}\n${this.white}`);
   }
-
+  /**
+   * Output comment with color green
+   */
   public static success(text) {
     console.log(`${this.green}${text}\n${this.white}`);
   }
-
+  /**
+   * Output comment with color red
+   */
   public static danger(text) {
     console.log(`${this.red}${text}\n${this.white}`);
   }
-
+  /**
+   * Output comment with color white
+   */
   public static line(text) {
     console.log(`${this.white}${text}\n${this.white}`);
   }
-
+  /**
+   * Output comment with color blue
+   */
   public static info(text) {
     console.log(` ${this.blue} ${text}\n${this.white}`);
   }
   /**
+   * Output comment
+   */
+  public static plain(text) {
+    console.log(`${text}\n`);
+  }
+  /**
    * Get value from command prompt
    */
-  public static ask(text, callback) {
-    rl.question(`${text}`, callback);
+  public static ask(callback) {
+    const rl: ReadLine = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    callback(rl);
+
+    // rl.question(`${text}`, callback);
     rl.on("close", function () {
       process.exit(0);
     });
