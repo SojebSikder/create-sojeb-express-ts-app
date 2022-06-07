@@ -88,7 +88,7 @@ export class Auth {
    * Get decoded data using jwt token
    * @returns
    */
-  static user(apiToken) {
+  static user(apiToken?) {
     let token = apiToken || null;
 
     if (token) {
