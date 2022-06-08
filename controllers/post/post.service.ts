@@ -47,7 +47,7 @@ export class PostService {
     const title = req.body.title;
     const content = req.body.content;
 
-    const user = Auth.get(req.signedCookies);
+    const user = Auth.userByCookie(req.signedCookies);
 
     const post = {
       title: title,

@@ -27,6 +27,12 @@ npx create-sojeb-express-ts-app hello-world
 - Migrate database using this command:
   `npx prisma migrate dev`
 
+## Using cli to automate process
+
+- generate controller and service together `yarn cmd make:module Blog`
+- generate only controller `yarn cmd make:controller Blog`
+- generate only service `yarn cmd make:service Blog`
+
 # Contribute
 
 ---

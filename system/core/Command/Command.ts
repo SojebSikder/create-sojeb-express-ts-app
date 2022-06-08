@@ -21,6 +21,16 @@ export class Command {
   private static white = "\x1b[37m";
 
   /**
+   * Accass Command Prompt Arguments
+   */
+  public static args(args) {
+    if (process.argv[args]) {
+      return process.argv[args];
+    } else {
+      this.danger(`${args} no. argument not found`);
+    }
+  }
+  /**
    * Set Custom Commands
    */
   public static set(command, callback) {
