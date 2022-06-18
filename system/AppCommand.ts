@@ -37,14 +37,14 @@ export class AppCommand {
         });
       });
     })
-      .describe("Test command")
-      .usage("test");
+      .describe("Example command")
+      .usage("ask");
 
     /**
      * Display application version
      */
     Command.set("-v", function () {
-      var pkg = require("../package.json");
+      const pkg = require("../package.json");
       Command.success(`Version: ${pkg.version}`);
     });
 
