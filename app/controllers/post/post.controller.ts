@@ -30,13 +30,13 @@ export class PostController {
    * @param req
    * @param res
    */
-  store = async (req: Request, res: Response) => {
+  async store(req: Request, res: Response) {
     await PostService.getInstance().store(req, res);
 
     res.render("post/addPost", {
       message: "Post has been added successfully",
     });
-  };
+  }
 
   /**
    * show add post page
