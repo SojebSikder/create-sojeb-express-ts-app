@@ -41,6 +41,14 @@ export class AppCommand {
       .usage("test");
 
     /**
+     * Display application version
+     */
+    Command.set("-v", function () {
+      var pkg = require("../package.json");
+      Command.success(`Version: ${pkg.version}`);
+    });
+
+    /**
      * Create Controller and service together
      */
     Command.set("make:module", async function () {

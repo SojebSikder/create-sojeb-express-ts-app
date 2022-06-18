@@ -90,6 +90,7 @@ nodemon app.ts
 - Mysql
 - redis
 - Nodemailer
+- Jest
 - jwt
 - graphql etc.
 
