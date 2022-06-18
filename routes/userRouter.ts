@@ -1,7 +1,7 @@
 import express from "express";
-import { UserController } from "../controllers/user/user.controller";
+import { UserController } from "../app/controllers/user/user.controller";
 
-import { decorateHtmlResponse } from "../middlewares/common/decorateHtmlResponse";
+import { decorateHtmlResponse } from "../app/middlewares/common/decorateHtmlResponse";
 
 const router = express.Router();
 const controller = new UserController();

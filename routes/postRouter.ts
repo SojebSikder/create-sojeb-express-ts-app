@@ -1,7 +1,7 @@
 import express from "express";
-import { PostController } from "../controllers/post/post.controller";
+import { PostController } from "../app/controllers/post/post.controller";
 
-import { decorateHtmlResponse } from "../middlewares/common/decorateHtmlResponse";
+import { decorateHtmlResponse } from "../app/middlewares/common/decorateHtmlResponse";
 
 const router = express.Router();
 const controller = new PostController();

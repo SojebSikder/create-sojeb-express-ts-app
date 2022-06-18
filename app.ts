@@ -15,8 +15,8 @@ import { routes } from "./router";
 import { env } from "./system/util";
 
 // middleware
-import { logger } from "./middlewares/logger";
-import { PostService } from "./controllers/post/post.service";
+import { logger } from "./app/middlewares/logger";
+import { PostService } from "./app/controllers/post/post.service";
 
 // initialize
 dotenv.config();

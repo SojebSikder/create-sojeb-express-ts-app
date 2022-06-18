@@ -5,9 +5,9 @@ import { Express, Request, Response } from "express";
 import postRouter from "./routes/postRouter";
 import userRouter from "./routes/userRouter";
 // middleware
-import { decorateHtmlResponse } from "./middlewares/common/decorateHtmlResponse";
-import { attachmentUpload } from "./middlewares/common/upload";
-import { Data } from "./models/Data";
+import { decorateHtmlResponse } from "./app/middlewares/common/decorateHtmlResponse";
+import { attachmentUpload } from "./app/middlewares/common/upload";
+import { Data } from "./app/models/Data";
 
 /**
  * Init all routes
