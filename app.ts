@@ -11,7 +11,7 @@ import { buildSchema } from "graphql";
 
 // internal imports
 import { appConfig } from "./config/app";
-import { routes } from "./router";
+import { routes } from "./routes/web";
 import { env } from "./system/util";
 
 // middleware
