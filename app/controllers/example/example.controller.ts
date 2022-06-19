@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Controller, Get } from "../../../system/decorator";
 
-@Controller("/")
+@Controller("/example")
 export class ExampleController {
   /**
    * show all data
