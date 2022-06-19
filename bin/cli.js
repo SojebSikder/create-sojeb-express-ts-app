@@ -24,7 +24,7 @@ console.log(`Creating new project ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
 if (!checkedOut) process.exit(-1);
 
-console.log(`deleting lock files for ${repoName}`);
+// console.log(`deleting lock files for ${repoName}`);
 const deletedLockFile = runCommand(`rm -rf ${repoName}/yarn.lock`);
 if (!deletedLockFile) process.exit(-1);
 
@@ -39,7 +39,7 @@ console.log(`copying .env.example to .env`);
 const copiedEnv = runCommand(`cp ${repoName}/.env.example ${repoName}/.env`);
 if (!copiedEnv) process.exit(-1);
 
-console.log(`Deleting bin folder`);
+// console.log(`Deleting bin folder`);
 const deletedBin = runCommand(`rm -rf ${repoName}/bin`);
 if (!deletedBin) process.exit(-1);
 
