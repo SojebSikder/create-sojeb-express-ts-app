@@ -1,20 +1,15 @@
 import { Request, Response } from "express";
-import { Controller, Get, Post } from "../../../system/decorator";
+import { Controller, Get } from "../../../system/decorator";
 
-@Controller("/user")
+@Controller("/")
 export class ExampleController {
   /**
    * show all data
    * @param req
-   * @param res../../system/core
+   * @param res
    */
-  @Get("show")
-  async index(req, res) {
-    res.send("hello world");
-  }
-
-  @Post("info")
-  async info(req, res) {
-    res.send("hello info");
+  @Get("/")
+  async index(req: Request, res: Response) {
+    res.send("Hello world");
   }
 }

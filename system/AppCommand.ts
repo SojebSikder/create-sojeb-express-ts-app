@@ -230,7 +230,7 @@ export class ${controllerName}{
   /**
    * show all data
    * @param req
-   * @param res../../system/core
+   * @param res
    */
   async index(req: Request, res: Response) {
     res.send("Hello world");

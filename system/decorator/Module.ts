@@ -1,7 +1,8 @@
-import { RouterStorage } from "../core";
-
+/**
+ * Module decorator.
+ * @param param
+ * @returns
+ */
 export function Module({ controllers }): Function {
-  return function (object: Function) {
-    // console.log(object);
-  };
+  return function (object: Function) {};
 }

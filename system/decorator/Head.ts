@@ -1,13 +1,13 @@
 import { RouterStorage } from "../core";
 
-export function Delete(route?: RegExp, options?): Function;
+export function Head(route?: RegExp, options?): Function;
 
-export function Delete(route?: string, options?): Function;
+export function Head(route?: string, options?): Function;
 
-export function Delete(route?: string | RegExp, options?): Function {
+export function Head(route?: string | RegExp, options?): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
-      type: "delete",
+      type: "head",
       target: object.constructor,
       method: methodName,
       options,

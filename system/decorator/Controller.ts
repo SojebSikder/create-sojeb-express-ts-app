@@ -1,12 +1,15 @@
 import { RouterStorage } from "../core";
 
-export function Controller(baseRoute?: string): Function {
+/**
+ * Controller decorator.
+ */
+export function Controller(baseRoute?: string, options?): Function {
   return function (object: Function) {
-
     RouterStorage.controllers.push({
       type: "default",
       target: object,
       route: baseRoute,
+      options,
     });
 
     // getMetadataArgsStorage().controllers.push({

@@ -2,6 +2,7 @@
 import http from "http";
 import express from "express";
 import dotenv from "dotenv";
+import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
@@ -28,6 +29,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 global.io = io;
 
+app.use(helmet());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
