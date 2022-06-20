@@ -7,47 +7,65 @@ const router = express.Router();
  * RouterResolver used to resolve route
  */
 export class RouterResolver {
-  static controller = RouterStorage.controllers;
-  static action = RouterStorage.actions;
-
   /**
    * Resolve router
    * @param app Express
    */
   public static resolve(app: Express) {
-    const controller = this.controller;
-    const action = this.action;
+    const controller = RouterStorage.controllers;
+    const action = RouterStorage.actions;
 
     for (const [controllerKey, controllerValue] of Object.entries(controller)) {
-      const controllerObject = new controllerValue.target();
-
       for (const [methodKey, methodValue] of Object.entries(action)) {
         if (controllerValue.target == methodValue.target) {
+          const controllerObject = new controllerValue.target();
+
           // if controller has not route specified
           if (!controllerValue.route) {
-            router[methodValue.type](
-              `${methodValue.route}`,
-              controllerObject[methodValue.method]
-            );
+            // if method has middleware
+            if (methodValue.options != null) {
+              const { middleware } = methodValue.options;
+              router[methodValue.type](
+                `${methodValue.route}`,
+                middleware,
+                controllerObject[methodValue.method]
+              );
+            } else {
+              router[methodValue.type](
+                `${methodValue.route}`,
+                controllerObject[methodValue.method]
+              );
+            }
           } else {
-            router[methodValue.type](
-              `${controllerValue.route}${methodValue.route}`,
-              controllerObject[methodValue.method]
-            );
+            // if method has middleware
+            if (methodValue.options != null) {
+              const { middleware } = methodValue.options;
+              router[methodValue.type](
+                `${controllerValue.route}${methodValue.route}`,
+                middleware,
+                controllerObject[methodValue.method]
+              );
+            } else {
+              router[methodValue.type](
+                `${controllerValue.route}${methodValue.route}`,
+                controllerObject[methodValue.method]
+              );
+            }
           }
 
-          // if controller has route specified
-          if (controllerValue.options != null) {
-            const { middleware } = controllerValue.options || {};
-            app.use(middleware, router);
-          }
-          // if method has middleware
-          if (methodValue.options != null) {
-            const { middleware } = methodValue.options || {};
-            app.use(middleware, router);
-          } else {
-            app.use(router);
-          }
+          // if controller has middleware
+          // if (controllerValue.options != null) {
+          //   const { middleware } = controllerValue.options || {};
+          //   app.use(middleware, router);
+          // }
+          // // if method has middleware
+          // if (methodValue.options != null) {
+          //   const { middleware } = methodValue.options || {};
+          //   app.use(middleware, router);
+          // } else {
+          //   app.use(router);
+          // }
+          app.use(router);
         }
       }
     }

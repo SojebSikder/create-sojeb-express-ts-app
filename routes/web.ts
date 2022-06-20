@@ -24,6 +24,10 @@ export function routes(app: Express) {
   // app.use(postRouter);
   app.use(decorateHtmlResponse(), userRouter);
 
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send(err);
+  });
   // fallback route
   app.get("*", function (req: Request, res: Response) {
     res.render("404");

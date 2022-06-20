@@ -1,33 +1,22 @@
 import { Request, Response } from "express";
-import { Controller, Get } from "../../../system/decorator";
+import { Controller, Get, Post } from "../../../system/decorator";
 import { env } from "../../../system/util";
 import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlResponse";
 import { helloWorld } from "../../middlewares/helloWorld";
 import { PostService } from "./post.service";
 
-@Controller("/")
+@Controller("/", { middleware: [helloWorld("Hello world")] })
 export class PostController {
-  /**
-   * show all data
-   * @param req
-   * @param res
-   */
-  @Get("/", {
-    middleware: [helloWorld("sojeb"), helloWorld("sikder")],
-  })
+  @Get("")
   async index(req: Request, res: Response) {
-    res.send("post");
+    res.send("Hello from post");
   }
   // async index(req: Request, res: Response) {
   //   const result = await PostService.getInstance().index();
   //   res.render("index", { posts: result });
   // }
 
-  /**
-   * show specific data
-   * @param req
-   * @param res
-   */
+  @Get("post/:id")
   async show(req: Request, res: Response) {
     const id = req.params.id;
     const result = await PostService.getInstance().show(id);
@@ -35,11 +24,7 @@ export class PostController {
     res.render("post/postSingle", { post: result });
   }
 
-  /**
-   * store data
-   * @param req
-   * @param res
-   */
+  @Post("post/add")
   async store(req: Request, res: Response) {
     await PostService.getInstance().store(req, res);
 
@@ -48,11 +33,7 @@ export class PostController {
     });
   }
 
-  /**
-   * show add post page
-   * @param req
-   * @param res
-   */
+  @Get("post/add")
   showAddPostPage(req: Request, res: Response) {
     res.render("post/addPost", {
       message: "",
