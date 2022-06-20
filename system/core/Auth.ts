@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { appConfig } from "../../config/app";
 import { authConfig } from "../../config/auth";
+import { env } from "../util";
 
 /**
  * Auth class
