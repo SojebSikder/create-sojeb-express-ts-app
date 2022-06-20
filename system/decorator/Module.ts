@@ -1,5 +1,6 @@
 /**
  * Module decorator.
+ * @author Sojeb Sikder <sojebsikder@gmail.com>
  * @param param
  * @returns
  */

@@ -5,6 +5,8 @@ import { RouterStorage } from "./RouterStorage";
 const router = express.Router();
 /**
  * RouterResolver used to resolve route
+ * @class RouterResolver
+ * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
 export class RouterResolver {
   /**

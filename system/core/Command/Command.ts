@@ -6,6 +6,8 @@ import { AppCommand } from "../../AppCommand";
 dotenv.config();
 /**
  * Command Class
+ * @class Command
+ * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
 export class Command {
   public static customCmd;

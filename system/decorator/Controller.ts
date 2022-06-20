@@ -2,6 +2,7 @@ import { RouterStorage } from "../core";
 
 /**
  * Controller decorator.
+ * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
 export function Controller(baseRoute?: string, options?): Function {
   return function (object: Function) {
