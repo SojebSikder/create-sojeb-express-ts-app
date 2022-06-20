@@ -5,7 +5,7 @@ import postRouter from "./postRouter";
 import userRouter from "./userRouter";
 // middleware
 import { decorateHtmlResponse } from "../app/middlewares/common/decorateHtmlResponse";
-import { RouterResolver } from "../system";
+import { Auth, RouterResolver } from "../system";
 import { AppModule } from "../app/controllers/app.module";
 
 /**
@@ -23,6 +23,11 @@ export function routes(app: Express) {
    */
   // app.use(postRouter);
   // app.use(decorateHtmlResponse(), userRouter);
+
+  app.get("/test", (req: Request, res: Response) => {
+    const user = Auth.userByCookie(req.signedCookies);
+    res.send(user);
+  });
 
   app.use((err, req, res, next) => {
     console.error(err.stack);

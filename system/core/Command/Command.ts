@@ -1,6 +1,9 @@
 import readline, { ReadLine } from "readline";
+import dotenv from "dotenv";
 import { AppCommand } from "../../AppCommand";
 
+// initialize dotenv
+dotenv.config();
 /**
  * Command Class
  */
