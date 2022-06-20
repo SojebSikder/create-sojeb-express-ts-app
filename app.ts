@@ -9,13 +9,10 @@ import { Server } from "socket.io";
 // graphql imports
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
-
 // internal imports
 import { appConfig } from "./config/app";
 import { routes } from "./routes/web";
-import { env } from "./system/util";
-
-// middleware
+// middleware imports
 import { logger } from "./app/middlewares/logger";
 import { PostService } from "./app/controllers/post/post.service";
 
@@ -24,7 +21,6 @@ dotenv.config();
 const app = express();
 app.disable("x-powered-by");
 const server = http.createServer(app);
-
 // socket creation
 const io = new Server(server);
 global.io = io;
@@ -35,7 +31,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(env("COOKIE_SECRET")));
+app.use(cookieParser(appConfig.cookieSecret));
 
 // GraphQL schema
 const schema = buildSchema(`
@@ -48,7 +44,6 @@ type Post{
   content: String
 }
 `);
-
 // Root resolver
 const root = {
   posts: async () => {

@@ -22,7 +22,7 @@ export function routes(app: Express) {
    * User custom router here
    */
   // app.use(postRouter);
-  app.use(decorateHtmlResponse(), userRouter);
+  // app.use(decorateHtmlResponse(), userRouter);
 
   app.use((err, req, res, next) => {
     console.error(err.stack);

@@ -5,26 +5,15 @@ import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlRespo
 import { helloWorld } from "../../middlewares/helloWorld";
 import { PostService } from "./post.service";
 
-@Controller("/", { middleware: [helloWorld("Hello world")] })
+@Controller("/")
 export class PostController {
-  @Get("")
+  @Get("", { middleware: [decorateHtmlResponse()] })
   async index(req: Request, res: Response) {
-    res.send("Hello from post");
-  }
-  // async index(req: Request, res: Response) {
-  //   const result = await PostService.getInstance().index();
-  //   res.render("index", { posts: result });
-  // }
-
-  @Get("post/:id")
-  async show(req: Request, res: Response) {
-    const id = req.params.id;
-    const result = await PostService.getInstance().show(id);
-    res.locals.title = `${result.title} - ${env("APP_NAME")}`;
-    res.render("post/postSingle", { post: result });
+    const result = await PostService.getInstance().index();
+    res.render("index", { posts: result });
   }
 
-  @Post("post/add")
+  @Post("post/add", { middleware: [decorateHtmlResponse()] })
   async store(req: Request, res: Response) {
     await PostService.getInstance().store(req, res);
 
@@ -33,10 +22,18 @@ export class PostController {
     });
   }
 
-  @Get("post/add")
+  @Get("post/add", { middleware: [decorateHtmlResponse()] })
   showAddPostPage(req: Request, res: Response) {
     res.render("post/addPost", {
       message: "",
     });
+  }
+
+  @Get("post/:id", { middleware: [decorateHtmlResponse()] })
+  async show(req: Request, res: Response) {
+    const id = req.params.id;
+    const result = await PostService.getInstance().show(id);
+    res.locals.title = `${result.title} - ${env("APP_NAME")}`;
+    res.render("post/postSingle", { post: result });
   }
 }
