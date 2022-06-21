@@ -8,12 +8,11 @@ import { ArrayHelper } from "../../helper/ArrayHelper";
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  * @example
  * import { ORM } from "../../system/core/ORM";
- * import { Data } from "../models/Data";
  * class Data extends ORM {
  *  title: string;
  *  text: string;
  * }
- * @example
+ * // Usage
  * const data = new Data();
  * data.title = "Hello World";
  * data.text = "This is a test";
@@ -28,6 +27,10 @@ export class ORM {
   private table;
 
   private whereC = null;
+  /**
+   * Egar loading relationship
+   */
+  private _with = null;
 
   constructor(table = null) {
     if (table != null) {
@@ -40,11 +43,11 @@ export class ORM {
   /**
    * where clause
    */
-  public where(key, value) {
+  public where(key, del, value) {
     if (this.whereC == null) {
-      this.whereC = `where ${key} = '${value}'`;
+      this.whereC = `where ${key} ${del} '${value}'`;
     } else {
-      this.whereC += ` and ${key} = '${value}'`;
+      this.whereC += ` and ${key} ${del} '${value}'`;
     }
     return this;
   }
@@ -52,12 +55,29 @@ export class ORM {
   /**
    * Or where clause
    */
-  public orWhere(key, value) {
+  public orWhere(key, del, value) {
     if (this.whereC == null) {
-      this.whereC = `where ${key} = '${value}'`;
+      this.whereC = `where ${key} ${del} '${value}'`;
     } else {
-      this.whereC += ` or ${key} = '${value}'`;
+      this.whereC += ` or ${key} ${del} '${value}'`;
     }
+    return this;
+  }
+
+  /**
+   * Eagar loading
+   * @param relationTable
+   * @param localKey
+   * @param foreignKey
+   * @returns
+   */
+  public with(relationTable, localKey = "id", foreignKey = "id") {
+    if (this._with == null) {
+      this._with = ` INNER JOIN ${relationTable} ${relationTable} ON ${this.table}.${localKey} = ${relationTable}.${foreignKey}`;
+    } else {
+      this._with += ` INNER JOIN ${relationTable} ${relationTable} ON ${this.table}.${localKey} = ${relationTable}.${foreignKey}`;
+    }
+
     return this;
   }
 
@@ -66,12 +86,16 @@ export class ORM {
    */
   public async get(columns = ["*"]) {
     const column = ArrayHelper.arrayToString(columns);
-    const data = await DB.select(
-      `select ${column} from ${this.table} ${this.whereC}`
-    );
-
+    let query;
+    if (this._with == null) {
+      query = `select ${column} from ${this.table} ${this.whereC}`;
+    } else {
+      query = `select ${column} from ${this.table} ${this._with} ${this.whereC}`;
+    }
+    const data = await DB.select(query);
     return data;
   }
+
   /**
    * fetch all data
    */
@@ -131,11 +155,10 @@ export class ORM {
     const properties = Reflect.ownKeys(this);
 
     for (const property of properties) {
-      if (!ArrayHelper.inArray(property, ["table", "whereC"])) {
+      if (!ArrayHelper.inArray(property, ["table", "whereC", "_with"])) {
         propsToImplode[property] = this[property];
       }
     }
-
     /**
      * insert data
      */
