@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "@types/nodemailer": "^6.4.4",
     "jest": "^28.1.1",
     "prisma": "^3.14.0",
+    "supertest": "^6.2.3",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.0",
     "typescript": "^4.7.2"
