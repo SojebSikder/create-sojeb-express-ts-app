@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { Controller, Get, Post } from "../../../system/decorator";
 import { env } from "../../../system/util";
 import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlResponse";
-import { helloWorld } from "../../middlewares/helloWorld";
 import { PostService } from "./post.service";
 
 @Controller("/")

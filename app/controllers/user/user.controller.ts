@@ -5,8 +5,6 @@ import { env } from "../../../system/util";
 import { UserService } from "./user.service";
 import { Controller, Get, Post } from "../../../system/decorator";
 import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlResponse";
-import { Auth } from "../../../system";
-import { appConfig } from "../../../config/app";
 
 const prisma = new PrismaClient();
 
