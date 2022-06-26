@@ -37,11 +37,12 @@ if (!installedDeps) process.exit(-1);
 
 console.log(`copying .env.example to .env`);
 const copiedEnv = runCommand(`cp ${repoName}/.env.example ${repoName}/.env`);
-if (!copiedEnv) process.exit(-1);
+// if (!copiedEnv) process.exit(-1);
 
 // console.log(`Deleting bin folder`);
 const deletedBin = runCommand(`rm -rf ${repoName}/bin`);
-if (!deletedBin) process.exit(-1);
+// if (!deletedBin) process.exit(-1);
+const deletedGithub = runCommand(`rm -rf ${repoName}/.github`);
 
 console.log(
   `${repoName} created successfully. Follow the following commands to start`

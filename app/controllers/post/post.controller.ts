@@ -6,6 +6,7 @@ import { PostService } from "./post.service";
 
 @Controller("/")
 export class PostController {
+  //
   @Get("", { middleware: [decorateHtmlResponse()] })
   async index(req: Request, res: Response) {
     const result = await PostService.getInstance().index();
