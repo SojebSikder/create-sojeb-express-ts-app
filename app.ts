@@ -7,8 +7,8 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 // graphql imports
-import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
+// import { graphqlHTTP } from "express-graphql";
+// import { buildSchema } from "graphql";
 // internal imports
 import { appConfig } from "./config/app";
 import { routes } from "./routes/web";
@@ -33,16 +33,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(appConfig.cookieSecret));
 
 // GraphQL schema
-const schema = buildSchema(`
-type Query {
-  posts: [Post]
-},
-type Post{
-  id: Int
-  title: String
-  content: String
-}
-`);
+// const schema = buildSchema(`
+// type Query {
+//   posts: [Post]
+// },
+// type Post{
+//   id: Int
+//   title: String
+//   content: String
+// }
+// `);
 // // Root resolver
 // const root = {
 //   posts: async () => {
