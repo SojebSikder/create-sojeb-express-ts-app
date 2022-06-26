@@ -1,0 +1,1 @@
+web: yarn build && node dist/app.js

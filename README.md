@@ -13,6 +13,10 @@ Boilerplate to create a new express typescript project
 
 Note: I didn't focus on front-end much.
 
+## Checkout example :
+
+https://github.com/SojebSikder/nodejs-ecommerce
+
 ## Creating a new app
 
 ```

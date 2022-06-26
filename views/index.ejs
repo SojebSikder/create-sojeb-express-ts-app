@@ -1,22 +1,6 @@
 <%- include('partials/header'); -%>
-  <%- include('partials/navbar'); -%>
+  <div class="container">
+    <h1>Welcome to Nodejs</h1>
+  </div>
 
-    <div class="container">
-      <h1>Welcome to Nodejs Blog</h1>
-      <% for(var i=0; i < posts.length; i++) { %>
-
-        <article>
-          <h1>
-            <%= posts[i].title %>
-          </h1>
-          <p>
-            <%= posts[i].content %>
-          </p>
-          <a class="btn btn-primary" href="/post/<%= posts[i].id %>">Read more.</a>
-        </article>
-        <hr />
-        <br />
-        <% } %>
-    </div>
-
-    <%- include('partials/footer'); -%>
+  <%- include('partials/footer'); -%>

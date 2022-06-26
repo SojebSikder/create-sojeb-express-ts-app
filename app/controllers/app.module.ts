@@ -1,8 +1,7 @@
 import { Module } from "../../system/decorator";
-import { PostController } from "./post/post.controller";
-import { UserController } from "./user/user.controller";
+import { ExampleController } from "./example/example.controller";
 
 @Module({
-  controllers: [PostController, UserController],
+  controllers: [ExampleController],
 })
 export class AppModule {}

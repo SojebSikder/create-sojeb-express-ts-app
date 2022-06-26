@@ -1,11 +1,8 @@
 // external imports
 import { Express, Request, Response } from "express";
 // internal imports
-import postRouter from "./postRouter";
-import userRouter from "./userRouter";
 // middleware
-import { decorateHtmlResponse } from "../app/middlewares/common/decorateHtmlResponse";
-import { Auth, RouterResolver } from "../system";
+import { RouterResolver } from "../system";
 import { AppModule } from "../app/controllers/app.module";
 
 /**
@@ -21,14 +18,6 @@ export function routes(app: Express) {
   /**
    * User custom router here
    */
-  // app.use(postRouter);
-  // app.use(decorateHtmlResponse(), userRouter);
-
-  app.get("/test", (req: Request, res: Response) => {
-    const user = Auth.userByCookie(req.signedCookies);
-    res.send(user);
-  });
-
   app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send(err);

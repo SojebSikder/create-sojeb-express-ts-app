@@ -14,7 +14,6 @@ import { appConfig } from "./config/app";
 import { routes } from "./routes/web";
 // middleware imports
 import { logger } from "./app/middlewares/logger";
-import { PostService } from "./app/controllers/post/post.service";
 
 // initialize
 dotenv.config();
@@ -44,25 +43,25 @@ type Post{
   content: String
 }
 `);
-// Root resolver
-const root = {
-  posts: async () => {
-    const controller = new PostService();
-    return controller.index();
-  },
-};
+// // Root resolver
+// const root = {
+//   posts: async () => {
+//     const controller = new PostService();
+//     return controller.index();
+//   },
+// };
 
-// custom middleware
+// // custom middleware
 app.use(logger);
-// graphql endpoint
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true,
-  })
-);
+// // graphql endpoint
+// app.use(
+//   "/graphql",
+//   graphqlHTTP({
+//     schema: schema,
+//     rootValue: root,
+//     graphiql: true,
+//   })
+// );
 
 //routes
 routes(app);
