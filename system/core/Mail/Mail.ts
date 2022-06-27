@@ -12,22 +12,22 @@ import { mailConfig } from "../../../config/mail";
  *  .send();
  */
 export class Mail {
-  public static host = mailConfig.mailers.smtp.host;
-  public static port = mailConfig.mailers.smtp.port;
-  public static user = mailConfig.mailers.smtp.username;
+  private static host = mailConfig.mailers.smtp.host;
+  private static port = mailConfig.mailers.smtp.port;
+  private static user = mailConfig.mailers.smtp.username;
 
-  public static accessToken = mailConfig.mailers.smtp.accessToken;
-  public static clientId = mailConfig.mailers.smtp.clientId;
-  public static clientSecret = mailConfig.mailers.smtp.clientSecret;
+  private static accessToken = mailConfig.mailers.smtp.accessToken;
+  private static clientId = mailConfig.mailers.smtp.clientId;
+  private static clientSecret = mailConfig.mailers.smtp.clientSecret;
 
   // mail options
-  public static from = mailConfig.from.address;
+  private static from = mailConfig.from.address;
   // to: recepient
-  public static recepient = "";
+  private static recepient = "";
   // subject
-  public static subjectText = "";
+  private static subjectText = "";
   // body
-  public static bodyText = "";
+  private static bodyText = "";
 
   /**
    * Mail recepient
@@ -56,7 +56,7 @@ export class Mail {
   /**
    * send mail
    */
-  public static send() {
+  public static send(html = false) {
     try {
       let transporter = nodemailer.createTransport({
         // host: "smtp.gmail.com",
@@ -72,12 +72,23 @@ export class Mail {
         },
       });
 
-      const mailOptions = {
-        from: this.from,
-        to: this.recepient,
-        subject: this.subjectText,
-        text: this.bodyText,
-      };
+      let mailOptions;
+
+      if (html == true) {
+        mailOptions = {
+          from: this.from,
+          to: this.recepient,
+          subject: this.subjectText,
+          html: this.bodyText,
+        };
+      } else {
+        mailOptions = {
+          from: this.from,
+          to: this.recepient,
+          subject: this.subjectText,
+          text: this.bodyText,
+        };
+      }
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {

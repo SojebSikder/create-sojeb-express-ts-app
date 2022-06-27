@@ -6,6 +6,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
+import cors from "cors";
 // graphql imports
 // import { graphqlHTTP } from "express-graphql";
 // import { buildSchema } from "graphql";
@@ -24,6 +25,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 global.io = io;
 
+app.use(cors());
 app.use(helmet());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
