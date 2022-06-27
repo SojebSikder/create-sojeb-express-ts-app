@@ -54,6 +54,13 @@ export class Mail {
     return this;
   }
   /**
+   * set credentials for sending email
+   */
+  public static setCredentials({ accessToken }) {
+    this.accessToken = accessToken;
+    return this;
+  }
+  /**
    * send mail
    */
   public static send(html = false) {
