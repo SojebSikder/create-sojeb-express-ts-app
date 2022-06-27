@@ -13,14 +13,16 @@ Boilerplate to create a new express typescript project
 
 Note: I didn't focus on front-end much.
 
-## Checkout example :
+## Example :
 
 https://github.com/SojebSikder/nodejs-ecommerce
 
 ## Creating a new app
 
+Using yarn :
+
 ```
-npx create-sojeb-express-ts-app hello-world
+yarn create sojeb-express-ts-app hello-world
 ```
 
 ## Configure
@@ -59,15 +61,31 @@ yarn install
 - Migrate database using this command:
   `npx prisma migrate dev`
 
+# Production
+
+## Build
+
+```
+yarn build
+```
+
+## Running
+
+```
+yarn start
+```
+
+## For development
+
+Run this command
+
 ## Running
 
 ```
 ts-node app.ts
 ```
 
-## For development
-
-Run this command
+## Watch changes
 
 ```
 yarn watch

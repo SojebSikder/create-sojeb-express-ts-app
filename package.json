@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "scripts": {
     "watch": "ts-node app.ts --watch",
     "build": "tsc --project tsconfig.json",
-    "start": "ts-node app.ts",
+    "start": "node dist/app.js",
     "cmd": "ts-node cmd.ts",
     "test": "jest"
   },
