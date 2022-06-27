@@ -85,9 +85,6 @@ export class ORM {
   /**
    * Fetch query single data
    */
-  /**
-   * fetch all data
-   */
   public async first(columns = ["*"]) {
     let column;
     if (Array.isArray(columns)) {
@@ -96,6 +93,20 @@ export class ORM {
       column = columns;
     }
     const data = await DB.selectOne(`select ${column} from ${this.table}`);
+    return data;
+  }
+  /**
+   * Fetch query data first
+   */
+  public async getOne(columns = ["*"]) {
+    const column = ArrayHelper.arrayToString(columns);
+    let query;
+    if (this._with == null) {
+      query = `select ${column} from ${this.table} ${this.whereC}`;
+    } else {
+      query = `select ${column} from ${this.table} ${this._with} ${this.whereC}`;
+    }
+    const data = await DB.selectOne(query);
     return data;
   }
   /**
