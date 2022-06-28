@@ -11,14 +11,13 @@ import { mailConfig } from "../../../config/mail";
  *  .body("My body")
  *  .send();
  */
+
 export class Mail {
   private static host = mailConfig.mailers.smtp.host;
   private static port = mailConfig.mailers.smtp.port;
   private static user = mailConfig.mailers.smtp.username;
+  private static pass = mailConfig.mailers.smtp.password;
 
-  private static accessToken = mailConfig.mailers.smtp.accessToken;
-  private static clientId = mailConfig.mailers.smtp.clientId;
-  private static clientSecret = mailConfig.mailers.smtp.clientSecret;
 
   // mail options
   private static from = mailConfig.from.address;
@@ -56,8 +55,9 @@ export class Mail {
   /**
    * set credentials for sending email
    */
-  public static setCredentials({ accessToken }) {
-    this.accessToken = accessToken;
+  public static setCredentials({ username, password }) {
+    this.user = username;
+    this.pass = password;
     return this;
   }
   /**
@@ -65,17 +65,28 @@ export class Mail {
    */
   public static send(html = false) {
     try {
+      // let transporter = nodemailer.createTransport({
+      //   // host: "smtp.gmail.com",
+      //   host: this.host,
+      //   port: 465,
+      //   secure: true,
+      //   auth: {
+      //     type: "OAuth2",
+      //     user: this.user,
+      //     accessToken: this.accessToken,
+      //     refreshToken: this.refreshToken,
+      //     clientId: this.clientId,
+      //     clientSecret: this.clientSecret,
+      //   },
+      // });
       let transporter = nodemailer.createTransport({
         // host: "smtp.gmail.com",
         host: this.host,
         port: 465,
         secure: true,
         auth: {
-          type: "OAuth2",
           user: this.user,
-          accessToken: this.accessToken,
-          clientId: this.clientId,
-          clientSecret: this.clientSecret,
+          pass: this.pass,
         },
       });
 
@@ -99,8 +110,10 @@ export class Mail {
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
+          console.log(error);
           return error;
         } else {
+          console.log("mail sent");
           return true;
         }
       });
