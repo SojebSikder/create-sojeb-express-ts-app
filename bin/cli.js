@@ -47,4 +47,4 @@ const deletedGithub = runCommand(`rm -rf ${repoName}/.github`);
 console.log(
   `${repoName} created successfully. Follow the following commands to start`
 );
-console.log(`cd ${repoName} && yarn watch`);
+console.log(`cd ${repoName} && yarn start:dev`);

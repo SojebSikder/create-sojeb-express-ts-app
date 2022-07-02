@@ -11,8 +11,6 @@
 
 Boilerplate to create a new express typescript project
 
-Note: I didn't focus on front-end much.
-
 ## Example :
 
 https://github.com/SojebSikder/nodejs-ecommerce
