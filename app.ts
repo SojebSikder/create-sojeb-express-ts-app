@@ -8,13 +8,14 @@ import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import cors from "cors";
 // graphql imports
-// import { graphqlHTTP } from "express-graphql";
-// import { buildSchema } from "graphql";
+import { graphqlHTTP } from "express-graphql";
 // internal imports
 import { appConfig } from "./config/app";
 import { routes } from "./routes/web";
 // middleware imports
 import { logger } from "./app/middlewares/logger";
+import { schema } from "./graphql/schema";
+import { rootResolver } from "./graphql/resolvers";
 
 // initialize
 dotenv.config();
@@ -26,7 +27,12 @@ const io = new Server(server);
 global.io = io;
 
 app.use(cors());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy:
+      process.env.NODE_ENV === "production" ? undefined : false,
+  })
+);
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -34,36 +40,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(appConfig.cookieSecret));
 
-// GraphQL schema
-// const schema = buildSchema(`
-// type Query {
-//   posts: [Post]
-// },
-// type Post{
-//   id: Int
-//   title: String
-//   content: String
-// }
-// `);
-// // Root resolver
-// const root = {
-//   posts: async () => {
-//     const controller = new PostService();
-//     return controller.index();
-//   },
-// };
-
-// // custom middleware
+// custom middleware
 app.use(logger);
-// // graphql endpoint
-// app.use(
-//   "/graphql",
-//   graphqlHTTP({
-//     schema: schema,
-//     rootValue: root,
-//     graphiql: true,
-//   })
-// );
+// graphql endpoint
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: rootResolver,
+    graphiql: true,
+  })
+);
 
 //routes
 routes(app);

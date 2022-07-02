@@ -21,5 +21,4 @@ export class ExampleService {
   public async index() {
     return "Hello world";
   }
-
 }
