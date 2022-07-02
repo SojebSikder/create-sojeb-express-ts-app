@@ -1,6 +1,6 @@
 <div align="center">
 
-[![npm-image]][npm-url] ![][typescript-image] [![synk-image]][synk-url]
+[![npm-image]][npm-url]<img alt="npm" src="https://img.shields.io/npm/dm/create-sojeb-express-ts-app?style=for-the-badge">![][typescript-image] [![synk-image]][synk-url]
 [![GitHub issues](https://img.shields.io/github/issues/SojebSikder/create-sojeb-express-ts-app?style=for-the-badge)](https://github.com/SojebSikder/create-sojeb-express-ts-app/issues)
 
 </div>
@@ -45,14 +45,6 @@ yarn create sojeb-express-ts-app hello-world
 yarn install
 ```
 
-## Setup
-
-- Copy .env.example to .env And set up database credentials in env file
-- run this command for database migration:
-  `npx prisma db push`
-- Migrate database using this command:
-  `npx prisma migrate dev`
-
 # Production
 
 ## Build
@@ -68,7 +60,6 @@ yarn start:prod
 ```
 
 ## Development
-
 
 ### Running
 
@@ -112,6 +103,16 @@ nodemon app.ts
 ---
 
 If you want to contribute fork the repo, create new branch and make pull request.
+
+## Setup (Contributing)
+
+If you clone this repo then you have to setup these things manually.
+
+- Copy .env.example to .env And set up database credentials in env file
+- run this command for database migration:
+  `npx prisma db push`
+- Migrate database using this command:
+  `npx prisma migrate dev`
 
 ## For help and support
 

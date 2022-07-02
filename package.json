@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./tests/jest-e2e.json",
     "cmd": "ts-node cmd.ts"
   },
   "dependencies": {
