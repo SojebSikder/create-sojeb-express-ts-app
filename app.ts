@@ -68,6 +68,9 @@ app.use(logger);
 //routes
 routes(app);
 
-app.listen(appConfig.port, () => {
+// run server
+server.listen(appConfig.port, () => {
   console.log(`Server is running on port ${appConfig.port}`);
 });
+
+export default server;

@@ -39,14 +39,6 @@ yarn create sojeb-express-ts-app hello-world
 - generate only controller `yarn cmd make:controller Blog`
 - generate only service `yarn cmd make:service Blog`
 
-# Contribute
-
----
-
-If you want to contribute clone the repo
-(https://github.com/SojebSikder/create-sojeb-express-ts-app), create new branch and make pull request.
-After clone the repo follow:
-
 ## Installing
 
 ```
@@ -75,17 +67,16 @@ yarn build
 yarn start
 ```
 
-## For development
+## Development
 
-Run this command
 
-## Running
+### Running
 
 ```
 ts-node app.ts
 ```
 
-## Watch changes
+### Watch changes
 
 ```
 yarn watch
@@ -115,6 +106,12 @@ nodemon app.ts
 - Jest
 - jwt
 - graphql etc.
+
+# Contribute
+
+---
+
+If you want to contribute fork the repo, create new branch and make pull request.
 
 ## For help and support
 
