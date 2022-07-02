@@ -1,9 +1,11 @@
-import request  from "supertest";
-import server from "../../app";
+import request from "supertest";
+import { Bihongo } from "../../system/core/Bihongo";
+
+const app = Bihongo.app();
 
 describe("GET /exmaple", function () {
   it("responds with html", function (done) {
-    request(server)
+    request(app)
       .get("/example")
       .set("Accept", "application/html")
       .expect("Content-Type", /html/)

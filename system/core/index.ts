@@ -1,3 +1,4 @@
+export * from "./Bihongo";
 export * from "./Auth";
 export * from "./Model";
 export * from "./ORM";

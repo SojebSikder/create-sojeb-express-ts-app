@@ -64,7 +64,7 @@ yarn build
 ## Running
 
 ```
-yarn start
+yarn start:prod
 ```
 
 ## Development
