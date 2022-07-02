@@ -12,12 +12,5 @@ export function Controller(baseRoute?: string, options?): Function {
       route: baseRoute,
       options,
     });
-
-    // getMetadataArgsStorage().controllers.push({
-    //   type: 'default',
-    //   target: object,
-    //   route: baseRoute,
-    //   options,
-    // });
   };
 }

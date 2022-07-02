@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.2",
     "@types/jsonwebtoken": "^8.5.8",

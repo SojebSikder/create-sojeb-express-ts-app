@@ -73,13 +73,13 @@ yarn start:prod
 ### Running
 
 ```
-ts-node app.ts
+yarn start
 ```
 
 ### Watch changes
 
 ```
-yarn watch
+yarn start:dev
 ```
 
 Or Install nodemon globally
