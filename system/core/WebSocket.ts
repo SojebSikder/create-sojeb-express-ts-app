@@ -9,5 +9,7 @@ export class WebSocket {
    * Instance of socket.io server
    * @type {Server}
    */
-  public static io: Server;
+  public static io(): Server {
+    return global.io;
+  }
 }

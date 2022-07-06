@@ -1,6 +1,6 @@
 <div align="center">
 
-[![npm-image]][npm-url]<img alt="npm" src="https://img.shields.io/npm/dm/create-sojeb-express-ts-app?style=for-the-badge">![][typescript-image] [![synk-image]][synk-url]
+[![npm-image]][npm-url] <img alt="npm" src="https://img.shields.io/npm/dm/create-sojeb-express-ts-app?style=for-the-badge"> ![][typescript-image] [![synk-image]][synk-url]
 [![GitHub issues](https://img.shields.io/github/issues/SojebSikder/create-sojeb-express-ts-app?style=for-the-badge)](https://github.com/SojebSikder/create-sojeb-express-ts-app/issues)
 
 </div>
