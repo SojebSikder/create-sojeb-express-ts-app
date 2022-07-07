@@ -77,7 +77,7 @@ Or Install nodemon globally
 yarn global add nodemon
 ```
 
-Then run using this nodemon
+Then run using this
 
 ```
 nodemon app.ts
