@@ -13,7 +13,7 @@ import cors from "cors";
 
 import { appConfig } from "../Config";
 import { routes } from "../Config";
-import { boot } from "../../app/app";
+import { boot } from "../Config";
 import { staticConfig } from "../Config";
 
 /**
