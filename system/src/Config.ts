@@ -7,7 +7,7 @@
 // import { routes as Routes } from "../routes/web";
 // import { boot as Boot } from "../app/app";
 
-import { bootstrap } from "../app/bootstrap";
+import { bootstrap } from "../../app/bootstrap";
 
 // map config from outside of core
 // export const appConfig = AppConfig;

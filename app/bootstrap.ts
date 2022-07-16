@@ -1,4 +1,4 @@
-import { System } from "../system/Config";
+import { System } from "../system/src/Config";
 // config
 import { appConfig } from "../config/app";
 import { authConfig } from "../config/auth";

@@ -1,4 +1,4 @@
-import { Module } from "../../system/decorator";
+import { Module } from "../../system/src/decorator";
 import { ExampleController } from "./example/example.controller";
 
 @Module({

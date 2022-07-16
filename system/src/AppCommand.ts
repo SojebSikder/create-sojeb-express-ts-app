@@ -45,7 +45,7 @@ export class AppCommand {
      * Display application version
      */
     Command.set("-v", function () {
-      const pkg = require("../package.json");
+      const pkg = require("../../package.json");
       Command.success(`Version: ${pkg.version}`);
     });
 
