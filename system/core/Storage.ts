@@ -1,4 +1,5 @@
-import filesystemConfig from "../../config/filesystems";
+// import filesystemConfig from "../../config/filesystems";
+import { filesystemConfig } from "../Config";
 import { StorageClass } from "./Disk/StorageClass";
 import { LocalAdapter } from "./Disk/drivers/LocalAdapter";
 

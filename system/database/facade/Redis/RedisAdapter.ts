@@ -1,6 +1,7 @@
 import { createClient } from "redis";
 // redis imports
-import { dbConfig } from "../../../../config/database";
+// import { dbConfig } from "../../../../config/database";
+import { dbConfig } from "../../../Config";
 
 /**
  * Redis adapter class

@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
-import { mailConfig } from "../../../config/mail";
+// import { mailConfig } from "../../../config/mail";
+import { mailConfig } from "../../Config";
 
 /**
  * Mail abstraction top of nodemailer. Using Mail class Send email

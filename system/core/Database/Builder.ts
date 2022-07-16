@@ -1,4 +1,5 @@
-import { dbConfig } from "../../../config/database";
+// import { dbConfig } from "../../../config/database";
+import { dbConfig } from "../../Config";
 import { MySQLAdapter } from "../../database/drivers/MySQLAdapter";
 import { Dbase } from "../../database/Dbase";
 import { PostgreSQLAdapter } from "../../database/drivers/PostgreSQLAdapter";
