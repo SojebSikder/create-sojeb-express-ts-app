@@ -13,7 +13,7 @@
     // This compiler run should
     // only output d.ts files
     "emitDeclarationOnly": false,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "outDir": "dist/",
     // Types should go into this directory.
     // Removing this would place the .d.ts files
