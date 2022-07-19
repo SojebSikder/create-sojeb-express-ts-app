@@ -1,6 +1,5 @@
 // external imports
 import http from "http";
-import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import { Server } from "socket.io";
@@ -27,7 +26,8 @@ export class Bihongo {
   static app(frameworkAdapter = new ExpressAdapter()) {
     // initialize
     dotenv.config();
-    const app = express();
+    const app = frameworkAdapter.app();
+
     app.disable("x-powered-by");
     const server = http.createServer(app);
     // socket creation
@@ -40,7 +40,7 @@ export class Bihongo {
     if (appConfig.security.helmet.enable) {
       app.use(helmet(appConfig.security.helmet.options));
     }
-    app.use(express.static(staticConfig.staticDir));
+    app.use(frameworkAdapter.instance().static(staticConfig.staticDir));
     if (staticConfig.engine.enable) {
       app.set("view engine", staticConfig.engine.viewEngine);
       app.set("views", staticConfig.engine.viewsDir);

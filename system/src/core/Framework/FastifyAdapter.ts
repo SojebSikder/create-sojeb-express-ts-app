@@ -1,4 +1,14 @@
+import express from "express";
+import { IFAdapter } from "./IFAdapter";
+
 /**
- * Express framework adapter.
+ * Fastify framework adapter.
  */
-export class FastifyAdapter {}
+export class FastifyAdapter implements IFAdapter {
+  instance() {
+    return express;
+  }
+  app() {
+    return express();
+  }
+}
