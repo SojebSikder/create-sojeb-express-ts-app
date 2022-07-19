@@ -1,10 +1,9 @@
 import express from "express";
-import { IFAdapter } from "./IFAdapter";
 
 /**
  * Express framework adapter.
  */
-export class ExpressAdapter implements IFAdapter {
+export class ExpressAdapter {
   instance() {
     return express;
   }

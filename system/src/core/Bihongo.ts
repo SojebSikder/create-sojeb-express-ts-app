@@ -28,23 +28,27 @@ export class Bihongo {
     dotenv.config();
     const app = frameworkAdapter.app();
 
-    app.disable("x-powered-by");
+    if (frameworkAdapter instanceof ExpressAdapter) {
+      // express
+      app.disable("x-powered-by");
+
+      if (appConfig.security.cors.enable) {
+        app.use(cors(appConfig.security.cors.options));
+      }
+      if (appConfig.security.helmet.enable) {
+        app.use(helmet(appConfig.security.helmet.options));
+      }
+      app.use(frameworkAdapter.instance().static(staticConfig.staticDir));
+      if (staticConfig.engine.enable) {
+        app.set("view engine", staticConfig.engine.viewEngine);
+        app.set("views", staticConfig.engine.viewsDir);
+      }
+    }
+
     const server = http.createServer(app);
     // socket creation
     const io = new Server(server);
     global.io = io;
-
-    if (appConfig.security.cors.enable) {
-      app.use(cors(appConfig.security.cors.options));
-    }
-    if (appConfig.security.helmet.enable) {
-      app.use(helmet(appConfig.security.helmet.options));
-    }
-    app.use(frameworkAdapter.instance().static(staticConfig.staticDir));
-    if (staticConfig.engine.enable) {
-      app.set("view engine", staticConfig.engine.viewEngine);
-      app.set("views", staticConfig.engine.viewsDir);
-    }
 
     // initialize middleware
     boot(app);
