@@ -6,21 +6,16 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
+    "moduleResolution": "node",
     /* Modules */
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "typings/*",
-    "node_modules"
-  ]
+  "include": ["**/*.ts"],
+  "exclude": ["typings/*", "node_modules"]
 }

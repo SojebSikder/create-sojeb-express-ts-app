@@ -15,6 +15,7 @@ import { appConfig } from "../Config";
 import { routes } from "../Config";
 import { boot } from "../Config";
 import { staticConfig } from "../Config";
+import { ExpressAdapter } from "./Framework/ExpressAdapter";
 
 /**
  * Bihongo is another name of this boilarplate core.
@@ -23,7 +24,7 @@ export class Bihongo {
   /**
    * Initialize app.
    */
-  static app() {
+  static app(frameworkAdapter = new ExpressAdapter()) {
     // initialize
     dotenv.config();
     const app = express();
