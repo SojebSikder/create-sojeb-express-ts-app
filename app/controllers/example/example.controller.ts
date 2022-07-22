@@ -3,7 +3,7 @@ import { Controller, Get } from "../../../system/src/core/decorator";
 import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlResponse";
 import { ExampleService } from "./example.service";
 
-@Controller("/")
+@Controller()
 export class ExampleController {
   //
   @Get("", { middleware: [decorateHtmlResponse()] })

@@ -11,7 +11,7 @@ type RouteOption = {
  * Controller decorator.
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Controller(baseRoute?: string, options?): Function {
+export function Controller(baseRoute: string = "/", options?): Function {
   return function (object: Function) {
     RouterStorage.controllers.push({
       type: "default",
@@ -28,7 +28,7 @@ export function Controller(baseRoute?: string, options?): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Get(route?: string, options?: RouteOption): Function {
+export function Get(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "get",
@@ -46,7 +46,7 @@ export function Get(route?: string, options?: RouteOption): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Delete(route?: string, options?: RouteOption): Function {
+export function Delete(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "delete",
@@ -64,7 +64,7 @@ export function Delete(route?: string, options?: RouteOption): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Head(route?: string, options?: RouteOption): Function {
+export function Head(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "head",
@@ -82,7 +82,7 @@ export function Head(route?: string, options?: RouteOption): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Patch(route?: string, options?: RouteOption): Function {
+export function Patch(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "patch",
@@ -100,7 +100,7 @@ export function Patch(route?: string, options?: RouteOption): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Post(route?: string, options?: RouteOption): Function {
+export function Post(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "post",
@@ -118,7 +118,7 @@ export function Post(route?: string, options?: RouteOption): Function {
  * @param options
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
-export function Put(route?: string, options?: RouteOption): Function {
+export function Put(route: string = "", options?: RouteOption): Function {
   return function (object: Object, methodName: string) {
     RouterStorage.actions.push({
       type: "put",

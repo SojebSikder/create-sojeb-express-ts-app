@@ -225,20 +225,40 @@ export class ${modelName} extends ORM{
   public static createController(name) {
     const module = name;
     const controllerName = StringHelper.cfirst(`${name}Controller`);
+    const serviceName = StringHelper.cfirst(`${name}Service`);
 
     const data = `import { Request, Response } from "express";
-import { Controller, Get } from "../../../system/decorator";
+import { Controller, Delete, Get, Patch, Post } from "../../../system/src/core/decorator";
+import { ${serviceName} } from "./${module}.service";
     
-@Controller("/${module}")
+@Controller("/${module}/")
 export class ${controllerName} {
   //
-  @Get("")
-  async index(req: Request, res: Response) {
-    res.send("Hello world");
+  @Post()
+  async create(req: Request, res: Response) {
+    return await ${serviceName}.getInstance().create(req.body);
   }
-  @Get("/about")
-  async about(req: Request, res: Response) {
-    res.send("Hello world");
+
+  @Get()
+  async findAll(req: Request, res: Response) {
+    return await ${serviceName}.getInstance().findAll();
+  }
+
+  @Get(':id')
+  async findOne(req: Request, res: Response) {
+    return await ${serviceName}.getInstance().findOne(req.params.id);
+  }
+
+  @Patch(':id')
+  async update(req: Request, res: Response) {
+    const id = req.params.id;
+    const data = req.body;
+    return await ${serviceName}.getInstance().update(id, data)
+  }
+
+  @Delete(':id')
+  async remove(req: Request, res: Response) {
+    return await ${serviceName}.getInstance().remove(req.params.id)
   }
 }
  `;
@@ -251,13 +271,12 @@ export class ${controllerName} {
   public static createService(serviceName) {
     serviceName = StringHelper.cfirst(`${serviceName}Service`);
     const data = `import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
-import { Auth } from "../../../system/core";
 
 const prisma = new PrismaClient();
 
 export class ${serviceName} {
   private static _instance: ${serviceName};
+
   /**
    * Create instance
    */
@@ -267,49 +286,25 @@ export class ${serviceName} {
     }
     return this._instance;
   }
-  /**
-   * show all data
-   */
-  public async index() {
-    const result = await prisma.post.findMany();
-    return result;
+
+  create(data: any){
+    return 'This action adds a new user';
   }
 
-  /**
-   * show specific data
-   * @param req
-   * @param res
-   */
-  async show(arg_id: string) {
-    const id = arg_id;
-    const result = await prisma.post.findFirst({
-      where: {
-        id: Number(id),
-      },
-    });
-    return result;
+  findAll() {
+    return 'This action returns all user';
   }
 
-  /**
-   * store data
-   * @param req
-   * @param res
-   */
-  async store(req: Request, res: Response) {
-    const title = req.body.title;
-    const content = req.body.content;
+  findOne(id: string) {
+    return 'This action returns a {id} user';
+  }
 
-    const user = Auth.userByCookie(req.signedCookies);
+  update(id: string, data: any) {
+    return 'This action updates a {id} user';
+  }
 
-    const post = {
-      title: title,
-      content: content,
-      authorId: user.userid,
-    };
-
-    const result = await prisma.post.create({
-      data: post,
-    });
+  remove(id: string) {
+    return 'This action removes a {id} user';
   }
 }
  `;
