@@ -206,7 +206,7 @@ export class AppCommand {
    */
   public static createModel(modelName) {
     modelName = StringHelper.cfirst(`${modelName}`);
-    const data = `import { ORM } from "../../system/core/ORM";
+    const data = `import { ORM } from "../../system/src/core/ORM";
 
 export class ${modelName} extends ORM{
   // define custom table name like this:
