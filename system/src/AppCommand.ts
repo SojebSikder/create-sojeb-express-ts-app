@@ -236,29 +236,29 @@ export class ${controllerName} {
   //
   @Post()
   async create(req: Request, res: Response) {
-    return await ${serviceName}.getInstance().create(req.body);
+    res.send(await ${serviceName}.getInstance().create(req.body));
   }
 
   @Get()
   async findAll(req: Request, res: Response) {
-    return await ${serviceName}.getInstance().findAll();
+    res.send(await ${serviceName}.getInstance().findAll());
   }
 
   @Get(':id')
   async findOne(req: Request, res: Response) {
-    return await ${serviceName}.getInstance().findOne(req.params.id);
+    res.send(await ${serviceName}.getInstance().findOne(req.params.id));
   }
 
   @Patch(':id')
   async update(req: Request, res: Response) {
     const id = req.params.id;
     const data = req.body;
-    return await ${serviceName}.getInstance().update(id, data)
+    res.send(await ${serviceName}.getInstance().update(id, data));
   }
 
   @Delete(':id')
   async remove(req: Request, res: Response) {
-    return await ${serviceName}.getInstance().remove(req.params.id)
+    res.send(await ${serviceName}.getInstance().remove(req.params.id));
   }
 }
  `;
