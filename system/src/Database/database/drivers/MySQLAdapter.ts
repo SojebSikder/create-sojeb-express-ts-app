@@ -1,6 +1,6 @@
 import mysql from "mysql";
 
-import { dbConfig } from "../../Config";
+import { dbConfig } from "../../../Config";
 import { IAdapter } from "./iAdapter";
 
 /**

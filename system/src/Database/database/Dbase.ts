@@ -1,4 +1,4 @@
-import { IAdapter } from "../database/drivers/iAdapter";
+import { IAdapter } from "./drivers/iAdapter";
 /**
  * Dbase class for handling database
  * @class Dbase

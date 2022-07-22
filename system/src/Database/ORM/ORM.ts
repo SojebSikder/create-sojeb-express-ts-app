@@ -1,4 +1,4 @@
-import { DB } from "../../database/facade/DB";
+import { DB } from "../database/facade/DB";
 import { ArrayHelper } from "../../helper/ArrayHelper";
 import { ORMStorage } from "./ORMStorage";
 

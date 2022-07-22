@@ -1,4 +1,4 @@
-import { RouterStorage } from "../core/Router";
+import { RouterStorage } from "../Router";
 
 type RouteOption = {
   /**

@@ -1,5 +1,5 @@
-import { Builder } from "../core/Database/Builder";
-import { Dbase } from "../database/Dbase";
+import { Builder } from "../Database/Builder";
+import { Dbase } from "../Database/database/Dbase";
 
 /**
  * Model class

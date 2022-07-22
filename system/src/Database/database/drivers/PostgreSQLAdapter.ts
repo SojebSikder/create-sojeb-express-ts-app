@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 // import { dbConfig } from "../../../config/database";
-import { dbConfig } from "../../Config";
+import { dbConfig } from "../../../Config";
 import { IAdapter } from "./iAdapter";
 
 /**
