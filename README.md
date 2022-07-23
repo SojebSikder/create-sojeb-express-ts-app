@@ -15,12 +15,26 @@ Boilerplate to create a new express typescript project
 
 https://github.com/SojebSikder/nodejs-ecommerce
 
+# Getting started
+
 ## Creating a new app
 
 Using yarn :
 
 ```
 yarn create sojeb-express-ts-app hello-world
+```
+Edit example.controller.ts file.
+
+```typescript
+@Controller()
+export class ExampleController {
+  //
+  @Get("", { middleware: [decorateHtmlResponse()] })
+  async index(req: Request, res: Response) {
+    res.render("index");
+  }
+}
 ```
 
 ## Configure
