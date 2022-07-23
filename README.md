@@ -24,7 +24,7 @@ Using yarn :
 ```
 yarn create sojeb-express-ts-app hello-world
 ```
-Edit example.controller.ts file.
+Checkout example.controller.ts file.
 
 ```typescript
 @Controller()
@@ -57,15 +57,15 @@ export class ExampleController {
 yarn install
 ```
 
-# Production
+## Production
 
-## Build
+### Build
 
 ```
 yarn build
 ```
 
-## Running
+### Running
 
 ```
 yarn start:prod
