@@ -61,19 +61,25 @@ export class AppCommand {
           fs_sync.mkdirSync(`${controller_path}/${name}`, { recursive: true });
         }
 
+        let filename = name.split("/").pop();
+
         // create controller file
         await fs.writeFile(
-          `${controller_path}/${name}/${name}.controller.ts`,
-          AppCommand.createController(AppCommand.parseFileNameFromPath(name))
+          `${controller_path}/${name}/${filename}.controller.ts`,
+          AppCommand.createController(
+            AppCommand.parseFileNameFromPath(filename)
+          )
         );
         // create service file
         await fs.writeFile(
-          `${controller_path}/${name}/${name}.service.ts`,
-          AppCommand.createService(AppCommand.parseFileNameFromPath(name))
+          `${controller_path}/${name}/${filename}.service.ts`,
+          AppCommand.createService(AppCommand.parseFileNameFromPath(filename))
         );
         // response
         Command.success(
-          `${AppCommand.parseFileNameFromPath(name)} module created succesfully`
+          `${AppCommand.parseFileNameFromPath(
+            filename
+          )} module created succesfully`
         );
       } catch (err) {
         Command.danger(err);
@@ -88,13 +94,18 @@ export class AppCommand {
     Command.set("make:model", async function () {
       try {
         const name = Command.args(3);
-        await fs.writeFile(
-          `${model_path}/${name}.ts`,
 
-          AppCommand.createModel(AppCommand.parseFileNameFromPath(name))
+        let filename = name.split("/").pop();
+
+        await fs.writeFile(
+          `${model_path}/${filename}.ts`,
+
+          AppCommand.createModel(AppCommand.parseFileNameFromPath(filename))
         );
         Command.success(
-          `${AppCommand.parseFileNameFromPath(name)} model created succesfully`
+          `${AppCommand.parseFileNameFromPath(
+            filename
+          )} model created succesfully`
         );
       } catch (err) {
         Command.danger(err);
@@ -109,14 +120,18 @@ export class AppCommand {
     Command.set("make:controller", async function () {
       try {
         const name = Command.args(3);
+
+        let filename = name.split("/").pop();
         await fs.writeFile(
           `${controller_path}/${name}.ts`,
 
-          AppCommand.createController(AppCommand.parseFileNameFromPath(name))
+          AppCommand.createController(
+            AppCommand.parseFileNameFromPath(filename)
+          )
         );
         Command.success(
           `${AppCommand.parseFileNameFromPath(
-            name
+            filename
           )} controller created succesfully`
         );
       } catch (err) {
@@ -132,14 +147,16 @@ export class AppCommand {
     Command.set("make:service", async function () {
       try {
         const name = Command.args(3);
+
+        let filename = name.split("/").pop();
         await fs.writeFile(
           `${controller_path}/${name}.ts`,
 
-          AppCommand.createService(AppCommand.parseFileNameFromPath(name))
+          AppCommand.createService(AppCommand.parseFileNameFromPath(filename))
         );
         Command.success(
           `${AppCommand.parseFileNameFromPath(
-            name
+            filename
           )} service created succesfully`
         );
       } catch (err) {
