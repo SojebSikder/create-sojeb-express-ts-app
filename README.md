@@ -24,6 +24,7 @@ Using yarn :
 ```
 yarn create sojeb-express-ts-app hello-world
 ```
+
 Checkout example.controller.ts file.
 
 ```typescript
@@ -40,8 +41,6 @@ export class ExampleController {
 ## Configure
 
 - Set up database credentials in env file
-- run this command for database migration:
-  `npx prisma db push`
 - Migrate database using this command:
   `npx prisma migrate dev`
 
@@ -121,8 +120,6 @@ If you want to contribute fork the repo, create new branch and make pull request
 If you clone this repo then you have to setup these things manually.
 
 - Copy .env.example to .env And set up database credentials in env file
-- run this command for database migration:
-  `npx prisma db push`
 - Migrate database using this command:
   `npx prisma migrate dev`
 
