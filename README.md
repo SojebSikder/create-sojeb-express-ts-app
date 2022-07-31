@@ -1,7 +1,9 @@
 <div align="center">
-
-[![npm-image]][npm-url] <img alt="npm" src="https://img.shields.io/npm/dm/create-sojeb-express-ts-app?style=for-the-badge"> ![][typescript-image] [![synk-image]][synk-url]
-[![GitHub issues](https://img.shields.io/github/issues/SojebSikder/create-sojeb-express-ts-app?style=for-the-badge)](https://github.com/SojebSikder/create-sojeb-express-ts-app/issues)
+<img alt="npm" src="https://img.shields.io/npm/v/create-sojeb-express-ts-app/latest.svg?style=flat&logo=npm">
+<img alt="npm" src="https://img.shields.io/npm/dm/create-sojeb-express-ts-app">
+<img alt="npm" src="https://img.shields.io/badge/Typescript-294E80.svg?flat&logo=typescript">
+<img alt="Snyk Vulnerabilities for npm package" src="https://img.shields.io/snyk/vulnerabilities/npm/create-sojeb-express-ts-app">
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/sojebsikder/create-sojeb-express-ts-app">
 
 </div>
 
@@ -130,9 +132,3 @@ Email: sojebsikder@gmail.com
 ## Issue
 
 If you find any problem please create an issue.
-
-[npm-image]: https://img.shields.io/npm/v/create-sojeb-express-ts-app/latest.svg?style=for-the-badge&logo=npm
-[npm-url]: https://www.npmjs.com/package/create-sojeb-express-ts-app "npm"
-[typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
-[synk-image]: https://img.shields.io/snyk/vulnerabilities/github/SojebSikder/create-sojeb-express-ts-app?label=Synk%20Vulnerabilities&style=for-the-badge
-[synk-url]: https://snyk.io/test/github/SojebSikder/create-sojeb-express-ts-app?targetFile=package.json "synk"
