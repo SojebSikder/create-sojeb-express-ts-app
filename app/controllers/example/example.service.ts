@@ -1,10 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
-
-const prisma = new PrismaClient();
-
 export class ExampleService {
   private static _instance: ExampleService;
+
   /**
    * Create instance
    */
@@ -14,6 +10,7 @@ export class ExampleService {
     }
     return this._instance;
   }
+
   /**
    * show all data
    */
