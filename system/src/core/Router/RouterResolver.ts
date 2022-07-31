@@ -22,72 +22,39 @@ export class RouterResolver {
         if (controllerValue.target == methodValue.target) {
           const controllerObject = new controllerValue.target();
 
-          // if controller has not route specified
-          if (!controllerValue.route) {
-            const cmid = controllerValue.options.middleware;
-            // if method has middleware
-            if (methodValue.options != null) {
-              let { middleware } = methodValue.options;
+          // if method has middleware
+          if (methodValue.options != null) {
+            let { middleware } = methodValue.options;
 
-              // controller has middleware
-              if (controllerValue.options !== null) {
-                middleware = middleware.concat(cmid);
-              }
-
-              router[methodValue.type](
-                `${methodValue.route}`,
-                // middleware,
-                middleware,
-                controllerObject[methodValue.method]
-              );
-            } else {
-              // if controller has middleware
-              let middleware;
-              if (controllerValue.options !== null) {
-                middleware = controllerValue.options.middleware;
-              }
-
-              router[methodValue.type](
-                `${methodValue.route}`,
-                middleware,
-                controllerObject[methodValue.method]
-              );
+            // if controller has middleware
+            if (controllerValue.options != null) {
+              const cmid = controllerValue.options.middleware;
+              middleware = middleware.concat(cmid);
             }
-          } else {
-            // if method has middleware
-            if (methodValue.options != null) {
-              let { middleware } = methodValue.options;
 
-              // if controller has middleware
-              if (controllerValue.options !== null) {
-                const cmid = controllerValue.options.middleware;
-                middleware = middleware.concat(cmid);
-              }
+            router[methodValue.type](
+              `${controllerValue.route}${methodValue.route}`,
+              // middleware,
+              middleware,
+              controllerObject[methodValue.method]
+            );
+          } else {
+            // if controller has middleware
+            if (controllerValue.options != null) {
+              let middleware;
+              const cmid = controllerValue.options.middleware;
+              middleware = cmid;
 
               router[methodValue.type](
                 `${controllerValue.route}${methodValue.route}`,
-                // middleware,
                 middleware,
                 controllerObject[methodValue.method]
               );
             } else {
-              // if controller has middleware
-              if (controllerValue.options !== undefined) {
-                let middleware;
-                const cmid = controllerValue.options.middleware;
-                middleware = cmid;
-
-                router[methodValue.type](
-                  `${controllerValue.route}${methodValue.route}`,
-                  middleware,
-                  controllerObject[methodValue.method]
-                );
-              } else {
-                router[methodValue.type](
-                  `${controllerValue.route}${methodValue.route}`,
-                  controllerObject[methodValue.method]
-                );
-              }
+              router[methodValue.type](
+                `${controllerValue.route}${methodValue.route}`,
+                controllerObject[methodValue.method]
+              );
             }
           }
 
