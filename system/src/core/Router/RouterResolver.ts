@@ -25,16 +25,13 @@ export class RouterResolver {
           // if method has middleware
           if (methodValue.options != null) {
             let { middleware } = methodValue.options;
-
             // if controller has middleware
             if (controllerValue.options != null) {
               const cmid = controllerValue.options.middleware;
               middleware = middleware.concat(cmid);
             }
-
             router[methodValue.type](
               `${controllerValue.route}${methodValue.route}`,
-              // middleware,
               middleware,
               controllerObject[methodValue.method]
             );
