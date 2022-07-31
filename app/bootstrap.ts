@@ -3,7 +3,7 @@ import { System } from "../system/src/Config";
 import { appConfig } from "../config/app";
 import { authConfig } from "../config/auth";
 import { dbConfig } from "../config/database";
-import filesystemConfig from "../config/filesystems";
+import { filesystemConfig } from "../config/filesystems";
 import { mailConfig } from "../config/mail";
 import { staticConfig } from "../config/static";
 import { boot } from "../app/app";

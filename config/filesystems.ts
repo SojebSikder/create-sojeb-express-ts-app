@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config();
 
 // local disk storage for development
-const filesystemConfig = {
+export const filesystemConfig = {
   default: env("FILESYSTEM_DRIVER", "local"),
   disks: {
     // default disk
@@ -13,5 +13,3 @@ const filesystemConfig = {
     },
   },
 };
-
-export default filesystemConfig;
