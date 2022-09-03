@@ -1,5 +1,3 @@
-import { Data } from "../../models/Data";
-
 export class ExampleService {
   private static _instance: ExampleService;
 
@@ -17,7 +15,6 @@ export class ExampleService {
    * show all data
    */
   public async findAll() {
-    return await new Data().all();
-    // return "Hello world";
+    return "Hello world";
   }
 }
