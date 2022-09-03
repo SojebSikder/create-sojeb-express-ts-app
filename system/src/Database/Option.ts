@@ -1,13 +1,17 @@
+// Database option
 export type Option = {
-    /**
-     * set database driver
-     */
-    driver?: string;
-    connection: {
-      host?: string;
-      user?: string;
-      password?: string;
-      dbname?: string;
-      databaseUrl?: string;
-    };
+  /**
+   * Set database driver
+   */
+  driver?: string;
+  /**
+   * Database connection config
+   */
+  connection: {
+    host?: string;
+    user?: string;
+    password?: string;
+    dbname?: string;
+    databaseUrl?: string;
   };
+};

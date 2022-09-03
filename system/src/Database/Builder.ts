@@ -1,6 +1,5 @@
 import { MySQLAdapter } from "./database/drivers/MySQLAdapter";
 import { Dbase } from "./database/Dbase";
-import { PostgreSQLAdapter } from "./database/drivers/PostgreSQLAdapter";
 import { Option } from "./Option";
 
 /**
@@ -38,9 +37,6 @@ export class Builder {
     switch (dbsw) {
       case "mysql":
         driver = new MySQLAdapter(this._connection);
-        break;
-      case "pgsql":
-        driver = new PostgreSQLAdapter();
         break;
 
       default:

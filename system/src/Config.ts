@@ -32,61 +32,6 @@ type AuthConfig = {
     };
   };
 };
-type DbConfig = {
-  /**
-   * Default database connection name
-   */
-  default;
-
-  connection: {
-    /**
-     * Mysql database connection
-     */
-    mysql: {
-      driver;
-      url;
-      host;
-      port;
-      database;
-      username;
-      password;
-    };
-
-    pgsql: {
-      driver;
-      url;
-      host;
-      // port: env("DB_PORT", "5432"),
-      port;
-      database;
-      username;
-      password;
-    };
-    /**
-     * Redis database connection (Use Redis using Redis static class)
-     * example: Redis.get("key")
-     */
-    redis: {
-      default: {
-        url;
-        host;
-        username;
-        password;
-        port;
-        database;
-      };
-
-      cache: {
-        url;
-        host;
-        username;
-        password;
-        port;
-        database;
-      };
-    };
-  };
-};
 type FileSystemConfig = {
   default;
   disks: {
@@ -133,7 +78,6 @@ type Boot = (app) => void;
 export class System {
   public static appConfig: AppConfig;
   public static authConfig: AuthConfig;
-  public static dbConfig: DbConfig;
   public static filesystemConfig: FileSystemConfig;
   public static mailConfig: MailConfig;
   public static staticConfig: StaticConfig;
@@ -146,10 +90,6 @@ export class System {
 
   static setAuthConfig(authConfig) {
     this.authConfig = authConfig;
-  }
-
-  static setDbConfig(dbConfig) {
-    this.dbConfig = dbConfig;
   }
 
   static setFileSystemConfig(filesystemConfig) {
@@ -178,7 +118,6 @@ bootstrap();
 // map config from outside of core
 export const appConfig = System.appConfig;
 export const authConfig = System.authConfig;
-export const dbConfig = System.dbConfig;
 export const filesystemConfig = System.filesystemConfig;
 export const mailConfig = System.mailConfig;
 export const staticConfig = System.staticConfig;
