@@ -12,8 +12,8 @@ export class ExampleController {
     res.render("index");
   }
 
-  @Get("about")
-  async show(req: Request, res: Response) {
+  @Get("data")
+  async findAll(req: Request, res: Response) {
     const data = await ExampleService.getInstance().findAll();
     res.json(data);
   }
