@@ -4,6 +4,6 @@
  * @param param
  * @returns
  */
-export function Module({ controllers }): Function {
+export function Module({ imports, controllers }): Function {
   return function (object: Object, methodName: string) {};
 }

@@ -1,8 +1,21 @@
-// import { dbConfig } from "../../../config/database";
-import { dbConfig } from "../Config";
 import { MySQLAdapter } from "./database/drivers/MySQLAdapter";
 import { Dbase } from "./database/Dbase";
 import { PostgreSQLAdapter } from "./database/drivers/PostgreSQLAdapter";
+
+type Option = {
+  /**
+   * set database driver
+   */
+  driver?: string;
+  connection: {
+    host?: string;
+    user?: string;
+    password?: string;
+    dbname?: string;
+    databaseUrl?: string;
+  };
+};
+
 /**
  * Builder
  */
@@ -10,35 +23,41 @@ export class Builder {
   protected db: Dbase;
 
   public table = "";
+  private _driver = "";
+  private _connection = {};
 
   constructor() {
     this.connection();
+  }
+
+  // Db Builder config
+  config(options: Option) {
+    this._driver = options.driver;
+    this._connection = options.connection;
   }
 
   public connection() {
     this.db = this.DBSwitcher();
   }
 
-  public DBSwitcher($switch = false) {
-    //$this->db = new Database();
-
+  public DBSwitcher(toggle = false) {
     let dbsw, driver;
-    if ($switch == false) {
-      dbsw = dbConfig.connection[dbConfig["default"]]["driver"];
+    if (toggle == false) {
+      dbsw = this._driver;
     } else {
-      dbsw = $switch;
+      dbsw = toggle;
     }
 
     switch (dbsw) {
       case "mysql":
-        driver = new MySQLAdapter();
+        driver = new MySQLAdapter(this._connection);
         break;
       case "pgsql":
         driver = new PostgreSQLAdapter();
         break;
 
       default:
-        driver = new MySQLAdapter();
+        driver = new MySQLAdapter(this._connection);
         break;
     }
     this.db = new Dbase(driver);
