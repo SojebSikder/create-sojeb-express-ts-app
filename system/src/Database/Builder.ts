@@ -1,20 +1,7 @@
 import { MySQLAdapter } from "./database/drivers/MySQLAdapter";
 import { Dbase } from "./database/Dbase";
 import { PostgreSQLAdapter } from "./database/drivers/PostgreSQLAdapter";
-
-type Option = {
-  /**
-   * set database driver
-   */
-  driver?: string;
-  connection: {
-    host?: string;
-    user?: string;
-    password?: string;
-    dbname?: string;
-    databaseUrl?: string;
-  };
-};
+import { Option } from "./Option";
 
 /**
  * Builder

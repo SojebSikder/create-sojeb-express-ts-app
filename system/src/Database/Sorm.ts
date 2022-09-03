@@ -1,28 +1,13 @@
-import { ORM } from "./ORM";
-
-type SormOption = {
-  /**
-   * set database driver
-   */
-  driver?: string;
-  connection: {
-    host?: string;
-    user?: string;
-    password?: string;
-    dbname?: string;
-    databaseUrl?: string;
-  };
-};
+import { Option } from "./Option";
 
 /**
- * Sorm class
+ * Sorm class - A simple ORM
  * @class Model
- * @extends {Builder}
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
 export class Sorm {
   private static _config;
-  static config(options: SormOption) {
+  static config(options: Option) {
     this._config = options;
   }
   static getConfig() {
