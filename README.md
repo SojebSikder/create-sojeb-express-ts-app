@@ -46,12 +46,6 @@ export class ExampleController {
 - Migrate database using this command:
   `npx prisma migrate dev`
 
-## Using cli to automate process
-
-- generate controller and service together `yarn cmd make:module Blog`
-- generate only controller `yarn cmd make:controller Blog`
-- generate only service `yarn cmd make:service Blog`
-
 ## Installing
 
 ```
@@ -60,45 +54,72 @@ yarn install
 
 ## Production
 
-### Build
-
-```
-yarn build
-```
-
-### Running
-
-```
-yarn start:prod
-```
+- Build `yarn build`
+- Running `yarn start:prod`
 
 ## Development
 
-### Running
+- Run: `yarn start`
 
-```
-yarn start
+- Watch changes: `yarn start:dev`
+
+- Or Install nodemon globally: `yarn global add nodemon`. Then run using this: `nodemon app.ts`
+
+---
+
+## Table of contents (incomplete docs)
+
+- [Overview](#overview)
+  - [Controllers](#contribute)
+  - Services
+  - Modules
+- Techniques
+  - Storage
+  - Database
+    - Prisma
+    - Redis
+    - Sorm (extra)
+  - Mail
+  - Websocket
+- [CLI](#cli)
+  - [Overview](#overview-1)
+
+---
+
+# Overview
+
+## Controllers
+
+Controllers is used to handling requests and reponses.
+We use classes and decorators to create basic controllers. Decorators associate classes with required metadata to create routing map.
+
+## Routing
+
+In following example we will we'll use the `@Controller()` decorator, which is required to define a basic controller. We'll specify an optional route path prefix of `example`. Using a path prefix in a `@Controller()` decorator allows us to easily group a set of related routes, and minimize repetitive code. For example, we may choose to group a set of routes that manage interactions with a customer entity under the route /customers. In that case, we could specify the path prefix customers in the `@Controller()` decorator so that we don't have to repeat that portion of the path for each route in the file.
+
+```typescript
+@Controller("/example/")
+export class ExampleController {
+  @Get()
+  async index(req: Request, res: Response) {
+    res.send("Hello world");
+  }
+}
 ```
 
-### Watch changes
+> HINT: To create a controller using the CLI, simply execute the `yarn make:controller example` command.
 
-```
-yarn start:dev
-```
+# CLI
 
-Or Install nodemon globally
+## Overview
 
-```
-yarn global add nodemon
-```
+We can automate process using cmd cli.
 
-Then run using this
+- generate controller and service together `yarn cmd make:module Blog`
+- generate only controller `yarn cmd make:controller Blog`
+- generate only service `yarn cmd make:service Blog`
 
-```
-nodemon app.ts
-```
-
-## Technology used
+# Technology used
 
 - Typescript
 - Nodejs

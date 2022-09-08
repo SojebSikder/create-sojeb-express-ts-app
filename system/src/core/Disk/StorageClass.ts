@@ -14,6 +14,7 @@ export class StorageClass {
   public get(key: string) {
     return this.adapter.get(key);
   }
+
   /**
    * store data
    * @param key
@@ -23,6 +24,7 @@ export class StorageClass {
   public put(key: string, value: any) {
     return this.adapter.put(key, value);
   }
+
   /**
    * delete data
    * @param key

@@ -7,12 +7,14 @@ export interface IStorage {
    * @param key
    */
   get(key: string);
+
   /**
    * put data
    * @param key
    * @param value
    */
   put(key: string, value: any);
+
   /**
    * delete data
    * @param key
