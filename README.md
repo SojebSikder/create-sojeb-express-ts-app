@@ -70,7 +70,7 @@ yarn install
 ## Table of contents (incomplete docs)
 
 - [Overview](#overview)
-  - [Controllers](#contribute)
+  - [Controllers](#controllers)
   - Services
   - Modules
 - Techniques
