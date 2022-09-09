@@ -32,35 +32,6 @@ type AuthConfig = {
     };
   };
 };
-type FileSystemConfig = {
-  default;
-  disks: {
-    // default disk
-    local: {
-      driver;
-      root;
-    };
-  };
-};
-type MailConfig = {
-  mailers: {
-    smtp: {
-      host;
-      port;
-      encryption;
-      username;
-      password;
-    };
-  };
-
-  /**
-   * from address
-   *
-   */
-  from: {
-    address;
-  };
-};
 type StaticConfig = {
   staticDir;
   engine: {
@@ -78,8 +49,6 @@ type Boot = (app) => void;
 export class System {
   public static appConfig: AppConfig;
   public static authConfig: AuthConfig;
-  public static filesystemConfig: FileSystemConfig;
-  public static mailConfig: MailConfig;
   public static staticConfig: StaticConfig;
   public static routes: Routes;
   public static boot: Boot;
@@ -90,14 +59,6 @@ export class System {
 
   static setAuthConfig(authConfig) {
     this.authConfig = authConfig;
-  }
-
-  static setFileSystemConfig(filesystemConfig) {
-    this.filesystemConfig = filesystemConfig;
-  }
-
-  static setMailConfig(mailConfig) {
-    this.mailConfig = mailConfig;
   }
 
   static setStaticConfig(staticConfig) {
@@ -118,8 +79,6 @@ bootstrap();
 // map config from outside of core
 export const appConfig = System.appConfig;
 export const authConfig = System.authConfig;
-export const filesystemConfig = System.filesystemConfig;
-export const mailConfig = System.mailConfig;
 export const staticConfig = System.staticConfig;
 export const routes = System.routes;
 export const boot = System.boot;

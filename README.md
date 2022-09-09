@@ -79,7 +79,7 @@ yarn install
     - Prisma
     - Redis
     - Sorm (extra)
-  - Mail
+  - [Mail](#mail)
   - Websocket
 - [CLI](#cli)
   - [Overview](#overview-1)
@@ -108,6 +108,50 @@ export class ExampleController {
 ```
 
 > HINT: To create a controller using the CLI, simply execute the `yarn make:controller example` command.
+
+# Overview
+
+## Mail
+
+For send email we have used nodemailer under the hood.
+But first we have to config Mail.
+Change the app.module.ts like below example:
+
+```typescript
+import { env, Mail } from "../../system/src";
+import { Module } from "../../system/src/core/decorator";
+import { ExampleController } from "./example/example.controller";
+
+@Module({
+  imports: [
+    Mail.config({
+      connection: {
+        host: env("MAIL_HOST"),
+        from: {
+          address: env("MAIL_FROM_ADDRESS", "hello@example.com"),
+        },
+        secure: false,
+        port: env("MAIL_PORT", 587),
+        username: env("MAIL_USERNAME"),
+        password: env("MAIL_PASSWORD"),
+      },
+    }),
+  ],
+  controllers: [ExampleController],
+})
+export class AppModule {}
+```
+
+Now to send basic email we can use this below example:
+
+```typescript
+  /**
+   * send mail
+   */
+  public async sendMail() {
+    Mail.to("example@example.com").body("Hello world").send();
+  }
+```
 
 # CLI
 
