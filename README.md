@@ -73,8 +73,10 @@ yarn install
   - [Controllers](#controllers)
   - Services
   - Modules
-- Techniques
-  - Storage
+- [Techniques](#techniques)
+  - [Storage](#storage)
+    - [local](#local)
+    - [aws s3](#aws-s3)
   - Database
     - Prisma
     - Redis
@@ -109,7 +111,70 @@ export class ExampleController {
 
 > HINT: To create a controller using the CLI, simply execute the `yarn make:controller example` command.
 
-# Overview
+# Techniques
+
+# Storage
+
+## local
+
+## aws s3
+
+To use aws s3 first we need to config here:
+
+```typescript
+import { Storage } from "../../system/src";
+import { Module } from "../../system/src/core/decorator";
+import { ExampleController } from "./example/example.controller";
+
+@Module({
+  imports: [
+    Storage.config({
+      driver: "s3",
+      connection: {
+        awsAccessKeyId: "...",
+        awsSecretAccessKey: "...",
+        awsBucket: "...",
+        awsDefaultRegion: "ap-southeast-1",
+      },
+    }),
+  ],
+  controllers: [ExampleController],
+})
+export class AppModule {}
+```
+
+And we are ready to upload files to s3.
+To upload files to s3 see the following basic example:
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async upload() {
+    await Storage.put("sojebdemo/test.txt", "Hello world");
+  }
+```
+
+If we want to read files from s3 we have to use S3Adapter. And pass Storage config in S3Adapter constructor.
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  // import { S3Adapter } from "../../../system/src/core/Disk/drivers/S3Adapter";
+  public async getFile() {
+    const s3Adapter = await new S3Adapter(Storage.getConfig()).get(
+      "sojebdemo/test.txt"
+    );
+
+    s3Adapter.on("data", function (data) {
+      console.log(data.toString());
+    });
+  }
+```
+Now If we want to delete files from s3 we can use Storage class again.
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async deleteFile() {
+    return Storage.delete("sojebdemo/test.txt");
+  }
+```
 
 ## Mail
 

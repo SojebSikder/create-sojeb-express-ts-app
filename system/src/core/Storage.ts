@@ -1,6 +1,7 @@
 import { StorageClass } from "./Disk/StorageClass";
 import { LocalAdapter } from "./Disk/drivers/LocalAdapter";
 import { DiskOption } from "./Disk/Option";
+import { S3Adapter } from "./Disk/drivers/S3Adapter";
 
 /**
  * Storage class for handling storage
@@ -16,6 +17,14 @@ export class Storage {
    */
   public static config(config: DiskOption) {
     this._config = config;
+  }
+
+  /**
+   * Returns configuration
+   * @returns {DiskOption}
+   */
+  public static getConfig(): DiskOption {
+    return this._config;
   }
 
   /**
@@ -45,7 +54,7 @@ export class Storage {
    */
   public static async get(key: string) {
     const disk = this.storageDisk();
-    return disk.get(key);
+    return await disk.get(key);
   }
 
   /**
@@ -55,7 +64,7 @@ export class Storage {
    */
   public static async delete(key: string) {
     const disk = this.storageDisk();
-    return disk.delete(key);
+    return await disk.delete(key);
   }
 
   /**
@@ -73,9 +82,9 @@ export class Storage {
         driverAdapter = new LocalAdapter(config);
         break;
 
-      // case "s3":
-      //   driverAdapter = new S3Adapter();
-      //   break;
+      case "s3":
+        driverAdapter = new S3Adapter(config);
+        break;
 
       default:
         driverAdapter = new LocalAdapter(config);

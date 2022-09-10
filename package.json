@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.1.1",
+    "aws-sdk": "^2.1213.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
