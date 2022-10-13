@@ -48,6 +48,16 @@ export class Storage {
   }
 
   /**
+   * get data url
+   * @param key
+   * @returns
+   */
+  public static async url(key: string) {
+    const disk = this.storageDisk();
+    return await disk.url(key);
+  }
+
+  /**
    * read data
    * @param key
    * @returns

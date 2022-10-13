@@ -14,11 +14,11 @@ export class LocalAdapter implements IStorage {
 
   /**
    * returns file url
-   * @param key 
-   * @returns 
+   * @param key
+   * @returns
    */
   url(key: string): string {
-    return `${this._config.connection.rootUrl}/${key}`;
+    return `${process.env.APP_URL}/${key}`;
   }
 
   /**

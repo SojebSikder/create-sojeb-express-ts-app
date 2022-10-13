@@ -11,9 +11,6 @@ export class ExampleService {
     return this._instance;
   }
 
-  /**
-   * show all data
-   */
   public async findAll() {
     return "Hello world";
   }

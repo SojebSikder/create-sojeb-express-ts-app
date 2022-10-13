@@ -12,7 +12,7 @@
 
 # create-sojeb-express-ts-app
 
-Productive Boilerplate to create a new express typescript project
+Productive Boilerplate to create a new express typescript project.
 
 ## Example :
 
@@ -116,6 +116,65 @@ export class ExampleController {
 # Storage
 
 ## local
+
+We need to config first to use Local storage
+
+```typescript
+import { Storage } from "../../system/src";
+import { Module } from "../../system/src/core/decorator";
+import { ExampleController } from "./example/example.controller";
+
+@Module({
+  imports: [
+    Storage.config({
+      driver: "local",
+      connection: {
+        // Set public directory here
+        rootUrl: "public",
+      },
+    }),
+  ],
+  controllers: [ExampleController],
+})
+export class AppModule {}
+```
+
+And we are ready to upload files to s3 bucket.
+To upload files, see the following basic example:
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async upload() {
+    await Storage.put("sojebdemo/test.txt", "Hello world");
+  }
+```
+
+We can get url from bucket using `Storage.url(fileName)`.
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async getFileUrl() {
+    return Storage.url("sojebdemo/test.txt");
+  }
+```
+
+If we want to read files we can like this.
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async getFile() {
+ return Storage.get("sojebdemo/test.txt");
+  }
+```
+
+Now If we want to delete files, we can do like this.
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public deleteFile() {
+    return Storage.delete("sojebdemo/test.txt");
+  }
+```
 
 ## aws s3
 

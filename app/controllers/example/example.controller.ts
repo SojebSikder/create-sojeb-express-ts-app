@@ -8,7 +8,7 @@ import { ExampleService } from "./example.service";
 export class ExampleController {
   //
   @Get("", { middleware: [decorateHtmlResponse()] })
-  async index(req: Request, res: Response) {
+  index(req: Request, res: Response) {
     res.render("index");
   }
 

@@ -7,6 +7,15 @@ export class StorageClass {
   }
 
   /**
+   * get data url
+   * @param key
+   * @returns
+   */
+  public async url(key: string) {
+    return await this.adapter.url(key);
+  }
+
+  /**
    * read data
    * @param key
    * @returns
