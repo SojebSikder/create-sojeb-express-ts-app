@@ -12,7 +12,7 @@
 
 # create-sojeb-express-ts-app
 
-Boilerplate to create a new express typescript project
+Productive Boilerplate to create a new express typescript project
 
 ## Example :
 
@@ -34,7 +34,7 @@ Checkout example.controller.ts file.
 @Controller()
 export class ExampleController {
   @Get("", { middleware: [decorateHtmlResponse()] })
-  async index(req: Request, res: Response) {
+  index(req: Request, res: Response) {
     res.render("index");
   }
 }
@@ -103,7 +103,7 @@ In following example we will we'll use the `@Controller()` decorator, which is r
 @Controller("/example/")
 export class ExampleController {
   @Get()
-  async index(req: Request, res: Response) {
+  index(req: Request, res: Response) {
     res.send("Hello world");
   }
 }
@@ -143,13 +143,22 @@ import { ExampleController } from "./example/example.controller";
 export class AppModule {}
 ```
 
-And we are ready to upload files to s3.
-To upload files to s3 see the following basic example:
+And we are ready to upload files to s3 bucket.
+To upload files, see the following basic example:
 
 ```typescript
   // import { Storage } from "../../../system/src";
   public async upload() {
     await Storage.put("sojebdemo/test.txt", "Hello world");
+  }
+```
+
+We can get url from bucket using `Storage.url(fileName)`.
+
+```typescript
+  // import { Storage } from "../../../system/src";
+  public async getFileUrl() {
+    return Storage.url("sojebdemo/test.txt");
   }
 ```
 
@@ -168,10 +177,12 @@ If we want to read files from s3 we have to use S3Adapter. And pass Storage conf
     });
   }
 ```
+
 Now If we want to delete files from s3 we can use Storage class again.
+
 ```typescript
   // import { Storage } from "../../../system/src";
-  public async deleteFile() {
+  public deleteFile() {
     return Storage.delete("sojebdemo/test.txt");
   }
 ```

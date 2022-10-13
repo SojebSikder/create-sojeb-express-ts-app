@@ -18,6 +18,17 @@ export class S3Adapter implements IStorage {
   }
 
   /**
+   * returns object url
+   * 
+   * https://[bucketname].s3.[region].amazonaws.com/[object]
+   * @param key
+   * @returns
+   */
+  url(key: string) {
+    return `${this._config.connection.awsBucket}.s3.${this._config.connection.awsDefaultRegion}.amazonaws.com/${key}`;
+  }
+
+  /**
    * get data
    * @param key
    */

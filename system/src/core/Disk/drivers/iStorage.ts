@@ -9,6 +9,12 @@ export interface IStorage {
   get(key: string);
 
   /**
+   * get file url
+   * @param key
+   */
+  url(key: string);
+
+  /**
    * put data
    * @param key
    * @param value
