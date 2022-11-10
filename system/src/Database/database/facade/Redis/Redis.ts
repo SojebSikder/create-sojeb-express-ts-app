@@ -6,7 +6,8 @@ type Option = {
   port?: string;
   password?: string;
   dbname?: string;
-  databaseUrl?: string;
+  url?: string;
+  connect?: boolean;
 };
 /**
  * Redis facade class.
@@ -24,6 +25,10 @@ export class Redis {
   public static async connect() {
     const redisAdapter = this.redis.config(this._config);
     return redisAdapter;
+  }
+
+  public static instance() {
+    return this.redis.getInstance();
   }
 
   public static async set(key, value) {

@@ -1,3 +1,4 @@
+import { RedisClientType } from "@redis/client";
 import { createClient } from "redis";
 
 type Option = {
@@ -6,7 +7,8 @@ type Option = {
   port?: string;
   password?: string;
   dbname?: string;
-  databaseUrl?: string;
+  url?: string;
+  connect?: boolean;
 };
 
 /**
@@ -28,8 +30,9 @@ export class RedisAdapter {
   private dbUrl;
   private port;
 
-  public connection;
+  public connection: RedisClientType;
   public error;
+  public connect;
 
   constructor() {}
 
@@ -38,8 +41,9 @@ export class RedisAdapter {
     this.user = options.user;
     this.password = options.password;
     this.dbname = options.dbname;
-    this.dbUrl = options.databaseUrl;
+    this.dbUrl = options.url;
     this.port = options.port;
+    this.connect = options.connect || true;
     this.connectDB();
   }
 
@@ -62,8 +66,19 @@ export class RedisAdapter {
       console.log("Redis Client Error", err)
     );
 
-    await this.connection.connect();
+    if (this.connect == false) {
+    } else {
+      await this.connection.connect();
+    }
   };
+
+  /**
+   * get redis instance
+   * @returns
+   */
+  public getInstance(): RedisClientType {
+    return this.connection;
+  }
 
   /**
    * set key value pair
