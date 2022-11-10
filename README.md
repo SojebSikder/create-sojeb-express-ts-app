@@ -63,8 +63,6 @@ yarn install
 
 - Watch changes: `yarn start:dev`
 
-- Or Install nodemon globally: `yarn global add nodemon`. Then run using this: `nodemon app.ts`
-
 ---
 
 ## Table of contents (incomplete docs)
