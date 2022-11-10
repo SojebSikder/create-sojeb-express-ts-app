@@ -12,7 +12,7 @@
 
 # create-sojeb-express-ts-app
 
-Productive Boilerplate to create a new express typescript project.
+A productive Boilerplate to create new Express typescript project.
 
 ## Example :
 
