@@ -28,7 +28,7 @@ Using yarn :
 yarn create sojeb-express-ts-app hello-world
 ```
 
-Checkout example.controller.ts file.
+Try changing `example.controller.ts` file in app directory.
 
 ```typescript
 @Controller()
@@ -44,7 +44,7 @@ export class ExampleController {
 
 - Set up database credentials in env file
 - Migrate database using this command:
-  `npx prisma migrate dev`
+  `yarn prisma migrate dev`
 
 ## Installing
 
@@ -107,7 +107,7 @@ export class ExampleController {
 }
 ```
 
-> HINT: To create a controller using the CLI, simply execute the `yarn make:controller example` command.
+> HINT: To create a controller using the CLI, simply execute the `yarn cmd make:controller example` command.
 
 # Techniques
 
@@ -138,7 +138,7 @@ export class AppModule {}
 ```
 
 And we are ready to upload files to s3 bucket.
-To upload files, see the following basic example:
+To upload files, here is the basic example:
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -147,7 +147,7 @@ To upload files, see the following basic example:
   }
 ```
 
-We can get url from bucket using `Storage.url(fileName)`.
+We can get url from bucket using `Storage.url('fileName')`.
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -156,7 +156,7 @@ We can get url from bucket using `Storage.url(fileName)`.
   }
 ```
 
-If we want to read files we can like this.
+If we want to read files:
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -165,7 +165,7 @@ If we want to read files we can like this.
   }
 ```
 
-Now If we want to delete files, we can do like this.
+Now If we want to delete files:
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -176,7 +176,7 @@ Now If we want to delete files, we can do like this.
 
 ## aws s3
 
-To use aws s3 first we need to config here:
+To use aws S3 first we need to config in `app.module.ts`:
 
 ```typescript
 import { Storage } from "../../system/src";
@@ -200,8 +200,8 @@ import { ExampleController } from "./example/example.controller";
 export class AppModule {}
 ```
 
-And we are ready to upload files to s3 bucket.
-To upload files, see the following basic example:
+And we are ready to upload files to S3 bucket.
+To upload files:
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -210,7 +210,7 @@ To upload files, see the following basic example:
   }
 ```
 
-We can get url from bucket using `Storage.url(fileName)`.
+We can get url from bucket using `Storage.url('fileName')`.
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -219,7 +219,7 @@ We can get url from bucket using `Storage.url(fileName)`.
   }
 ```
 
-If we want to read files from s3 we have to use S3Adapter. And pass Storage config in S3Adapter constructor.
+If we want to read files from S3 we have to use S3Adapter. And pass Storage config in S3Adapter constructor.
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -235,7 +235,7 @@ If we want to read files from s3 we have to use S3Adapter. And pass Storage conf
   }
 ```
 
-Now If we want to delete files from s3 we can use Storage class again.
+Now If we want to delete files from S3 we can use Storage class again.
 
 ```typescript
   // import { Storage } from "../../../system/src";
@@ -246,9 +246,9 @@ Now If we want to delete files from s3 we can use Storage class again.
 
 ## Mail
 
-For send email we have used nodemailer under the hood.
-But first we have to config Mail.
-Change the app.module.ts like below example:
+For sending email, nodemailer used under the hood.
+So first config Mail in `app.module.ts`.
+Change the app.module.ts like this:
 
 ```typescript
 import { env, Mail } from "../../system/src";
@@ -275,7 +275,7 @@ import { ExampleController } from "./example/example.controller";
 export class AppModule {}
 ```
 
-Now to send basic email we can use this below example:
+Now to send a basic email we can do like this:
 
 ```typescript
   /**
@@ -292,14 +292,15 @@ Now to send basic email we can use this below example:
 
 We can automate process using cmd cli.
 
-- generate controller and service together `yarn cmd make:module Blog`
-- generate only controller `yarn cmd make:controller Blog`
-- generate only service `yarn cmd make:service Blog`
+- generate controller and service together: `yarn cmd make:module Blog`
+- generate only controller: `yarn cmd make:controller Blog`
+- generate only service: `yarn cmd make:service Blog`
+- To see all available commands: `yarn cmd list`
 
 # Technology used
 
 - Typescript
-- Nodejs
+- Node.js
 - Express
 - Prisma
 - Mysql
@@ -321,7 +322,7 @@ If you clone this repo then you have to setup these things manually.
 
 - Copy .env.example to .env And set up database credentials in env file
 - Migrate database using this command:
-  `npx prisma migrate dev`
+  `yarn prisma migrate dev`
 
 ## For help and support
 
