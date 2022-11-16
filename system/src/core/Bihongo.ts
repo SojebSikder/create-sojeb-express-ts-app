@@ -1,54 +1,39 @@
 // external imports
 import http from "http";
 import dotenv from "dotenv";
-import helmet from "helmet";
 import { Server } from "socket.io";
-import cors from "cors";
 // internal imports
-import { appConfig } from "../Config";
-import { routes } from "../Config";
-import { boot } from "../Config";
-import { staticConfig } from "../Config";
 import { ExpressAdapter } from "./Framework/ExpressAdapter";
 
 /**
  * Bihongo is another name of this boilarplate core.
  */
 export class Bihongo {
+  private static _app;
+
   /**
    * Initialize app.
    */
-  static app(frameworkAdapter = new ExpressAdapter()) {
+  static app({ frameworkAdapter = new ExpressAdapter(), boot, routes }) {
     // initialize
     dotenv.config();
-    const app = frameworkAdapter.app();
+    // const app = frameworkAdapter.app();
+    this._app = frameworkAdapter.app();
 
     if (frameworkAdapter instanceof ExpressAdapter) {
       // express
-      app.disable("x-powered-by");
-
-      if (appConfig.security.cors.enable) {
-        app.use(cors(appConfig.security.cors.options));
-      }
-      if (appConfig.security.helmet.enable) {
-        app.use(helmet(appConfig.security.helmet.options));
-      }
-      app.use(frameworkAdapter.instance().static(staticConfig.staticDir));
-      if (staticConfig.engine.enable) {
-        app.set("view engine", staticConfig.engine.viewEngine);
-        app.set("views", staticConfig.engine.viewsDir);
-      }
+      this._app.disable("x-powered-by");
     }
 
-    const server = http.createServer(app);
+    const server = http.createServer(this._app);
     // socket creation
     const io = new Server(server);
     global.io = io;
 
     // initialize middleware
-    boot(app);
+    boot(this._app);
     //routes
-    routes(app);
+    routes(this._app);
 
     return server;
   }

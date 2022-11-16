@@ -1,8 +1,5 @@
 import jwt from "jsonwebtoken";
-// import { appConfig } from "../../config/app";
-// import { authConfig } from "../../config/auth";
-import { appConfig } from "../Config";
-import { authConfig } from "../Config";
+import { AuthOption } from "./Option";
 
 /**
  * Auth class
@@ -10,6 +7,16 @@ import { authConfig } from "../Config";
  * @author Sojeb Sikder <sojebsikder@gmail.com>
  */
 export class Auth {
+  private static _config: AuthOption;
+
+  /**
+   * Auth configuration
+   * @param config
+   */
+  public static config(config: AuthOption) {
+    this._config = config;
+  }
+
   /**
    * authToken middleware. using this authenticate using jwt token
    * @param req
@@ -46,7 +53,7 @@ export class Auth {
               ? req.signedCookies
               : null;
           if (cookies) {
-            token = cookies[appConfig.cookieName];
+            token = cookies[this._config.cookieName];
           }
         }
       }
@@ -59,7 +66,7 @@ export class Auth {
         }
       } else {
         // verify token
-        jwt.verify(token, authConfig.guards.jwt.secret, (err, data) => {
+        jwt.verify(token, this._config.jwt.secret, (err, data) => {
           if (callback && typeof callback === "function") {
             if (err) {
               return callback(err, data, req, res);
@@ -84,8 +91,8 @@ export class Auth {
    */
   static generateAccessToken(user) {
     // generate token
-    const token = jwt.sign(user, authConfig.guards.jwt.secret, {
-      expiresIn: authConfig.guards.jwt.expires,
+    const token = jwt.sign(user, this._config.jwt.secret, {
+      expiresIn: this._config.jwt.expires,
     });
 
     return token;
@@ -98,7 +105,7 @@ export class Auth {
    */
   static generateRefreshAccessToken(user) {
     // generate refresh token
-    const token = jwt.sign(user, authConfig.guards.jwt.refresh_secret);
+    const token = jwt.sign(user, this._config.jwt.refreshSecret);
 
     return token;
   }
@@ -112,8 +119,8 @@ export class Auth {
 
     if (cookies) {
       try {
-        const token = cookies[appConfig.cookieName];
-        const decoded = jwt.verify(token, authConfig.guards.jwt.secret);
+        const token = cookies[this._config.cookieName];
+        const decoded = jwt.verify(token, this._config.jwt.secret);
 
         return decoded;
       } catch (err) {
@@ -132,7 +139,7 @@ export class Auth {
 
     if (token) {
       try {
-        const decoded = jwt.verify(token, authConfig.guards.jwt.secret);
+        const decoded = jwt.verify(token, this._config.jwt.secret);
 
         return decoded;
       } catch (err) {

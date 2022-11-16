@@ -1,4 +1,4 @@
-import { Auth } from "../../system/src/core/Auth";
+import { Auth } from "../../system/src/auth/Auth";
 
 /**
  * simple middleware for authorization
