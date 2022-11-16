@@ -243,39 +243,44 @@ export class ${modelName} extends ORM{
     const module = name;
     const controllerName = StringHelper.cfirst(`${name}Controller`);
     const serviceName = StringHelper.cfirst(`${name}Service`);
+    const serviceNameUncap = StringHelper.ucfirst(`${name}Service`);
 
     const data = `import { Request, Response } from "express";
+import { Dinjectable } from "../../../system/src";
 import { Controller, Delete, Get, Patch, Post } from "../../../system/src/core/decorator";
 import { ${serviceName} } from "./${module}.service";
-    
+
+@Dinjectable()
 @Controller("/${module}/")
 export class ${controllerName} {
   //
+  constructor(private ${serviceNameUncap}: ${serviceName}) {}
+
   @Post()
-  async create(req: Request, res: Response) {
-    res.send(await ${serviceName}.getInstance().create(req.body));
+  create(req: Request, res: Response) {
+    res.send(this.${serviceNameUncap}.create(req.body));
   }
 
   @Get()
-  async findAll(req: Request, res: Response) {
-    res.send(await ${serviceName}.getInstance().findAll());
+  findAll(req: Request, res: Response) {
+    res.send(this.${serviceNameUncap}.findAll());
   }
 
   @Get(':id')
-  async findOne(req: Request, res: Response) {
-    res.send(await ${serviceName}.getInstance().findOne(req.params.id));
+  findOne(req: Request, res: Response) {
+    res.send(this.${serviceNameUncap}.findOne(req.params.id));
   }
 
   @Patch(':id')
-  async update(req: Request, res: Response) {
+  update(req: Request, res: Response) {
     const id = req.params.id;
     const data = req.body;
-    res.send(await ${serviceName}.getInstance().update(id, data));
+    res.send(this.${serviceNameUncap}.update(id, data));
   }
 
   @Delete(':id')
-  async remove(req: Request, res: Response) {
-    res.send(await ${serviceName}.getInstance().remove(req.params.id));
+  remove(req: Request, res: Response) {
+    res.send(this.${serviceNameUncap}.remove(req.params.id));
   }
 }
  `;
@@ -287,22 +292,13 @@ export class ${controllerName} {
    */
   public static createService(serviceName) {
     serviceName = StringHelper.cfirst(`${serviceName}Service`);
-    const data = `import { PrismaClient } from "@prisma/client";
+    const data = `import { Dinjectable } from "../../../system/src";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+@Dinjectable()
 export class ${serviceName} {
-  private static _instance: ${serviceName};
-
-  /**
-   * Create instance
-   */
-  public static getInstance() {
-    if (!this._instance) {
-      this._instance = new this();
-    }
-    return this._instance;
-  }
 
   create(data: any){
     return 'This action adds a new user';
