@@ -1,4 +1,4 @@
-import { ORM } from "../../system/src/Database/ORM";
+import { ORM } from "bihongojs";
 
 export class Data extends ORM {
   title: string;
