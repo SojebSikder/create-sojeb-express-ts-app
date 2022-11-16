@@ -1,17 +1,16 @@
-export class ExampleService {
-  private static _instance: ExampleService;
+import { Dinjectable } from "../../../system/src";
 
-  /**
-   * Create instance
-   */
-  public static getInstance() {
-    if (!this._instance) {
-      this._instance = new this();
-    }
-    return this._instance;
+class Database {
+  do() {
+    console.log("db initiated...");
   }
+}
+@Dinjectable()
+export class ExampleService {
+  constructor(private database: Database) {}
 
-  public async findAll() {
+  public findAll() {
+    this.database.do();
     return "Hello world";
   }
 }

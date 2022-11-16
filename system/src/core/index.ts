@@ -8,6 +8,7 @@
 // export * from "./Storage";
 // export * from "./WebSocket";
 
+export * from "./DI";
 export * from "./Bihongo";
 export * from "./Command";
 export * from "./decorator";

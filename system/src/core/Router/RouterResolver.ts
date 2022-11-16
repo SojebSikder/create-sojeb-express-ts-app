@@ -1,5 +1,7 @@
 import express, { Express } from "express";
 import { RouterStorage } from "./RouterStorage";
+import "reflect-metadata";
+import { container } from "tsyringe";
 
 // Initialize express router
 const router = express.Router();
@@ -20,7 +22,8 @@ export class RouterResolver {
     for (const [controllerKey, controllerValue] of Object.entries(controller)) {
       for (const [methodKey, methodValue] of Object.entries(action)) {
         if (controllerValue.target == methodValue.target) {
-          const controllerObject = new controllerValue.target();
+          // const controllerObject = new controllerValue.target();
+          const controllerObject = container.resolve(controllerValue.target);
 
           // if method has middleware
           if (methodValue.options != null) {
@@ -33,7 +36,7 @@ export class RouterResolver {
             router[methodValue.type](
               `${controllerValue.route}${methodValue.route}`,
               middleware,
-              controllerObject[methodValue.method]
+              (req, res) => controllerObject[methodValue.method](req, res)
             );
           } else {
             // if controller has middleware
@@ -45,12 +48,12 @@ export class RouterResolver {
               router[methodValue.type](
                 `${controllerValue.route}${methodValue.route}`,
                 middleware,
-                controllerObject[methodValue.method]
+                (req, res) => controllerObject[methodValue.method](req, res)
               );
             } else {
               router[methodValue.type](
                 `${controllerValue.route}${methodValue.route}`,
-                controllerObject[methodValue.method]
+                (req, res) => controllerObject[methodValue.method](req, res)
               );
             }
           }
