@@ -1,5 +1,5 @@
 import { Command } from "bihongojs";
-import { Inspiring } from "bihongojs/src/Inspire";
+import { Inspiring } from "bihongojs";
 
 /**
  * Custom Command

@@ -1,6 +1,6 @@
 {
   "name": "create-sojeb-express-ts-app",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Boilerplate to create a new express typescript project",
   "repository": {
     "type": "git",
