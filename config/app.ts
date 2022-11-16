@@ -1,4 +1,5 @@
-import { env } from "../system/src/util";
+// import { env } from "../system/src/util";
+import { env } from "bihongojs";
 import dotenv from "dotenv";
 dotenv.config();
 

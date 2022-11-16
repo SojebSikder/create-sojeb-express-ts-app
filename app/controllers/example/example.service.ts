@@ -1,4 +1,4 @@
-import { Dinjectable } from "../../../system/src";
+import { Dinjectable } from "bihongojs";
 
 class Database {
   do() {

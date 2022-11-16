@@ -1,4 +1,4 @@
-import { env } from "../../../system/src/util";
+import { env } from "bihongojs";
 
 export function decorateHtmlResponse(page_title = null) {
   return function (req, res, next) {

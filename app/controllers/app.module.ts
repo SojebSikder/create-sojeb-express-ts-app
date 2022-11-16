@@ -1,7 +1,7 @@
 import { appConfig } from "../../config/app";
 import { authConfig } from "../../config/auth";
-import { Auth } from "../../system/src";
-import { Module } from "../../system/src/core/decorator";
+import { Auth } from "bihongojs";
+import { Module } from "bihongojs";
 import { ExampleController } from "./example/example.controller";
 
 @Module({

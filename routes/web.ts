@@ -2,7 +2,7 @@
 import { Express, Request, Response } from "express";
 // internal imports
 // middleware
-import { RouterResolver } from "../system/src/core/Router";
+import { RouterResolver } from "bihongojs";
 import { AppModule } from "../app/controllers/app.module";
 
 /**

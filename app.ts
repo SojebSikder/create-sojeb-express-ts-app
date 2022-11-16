@@ -1,7 +1,7 @@
 import { boot } from "./app/app";
 import { appConfig } from "./config/app";
 import { routes } from "./routes/web";
-import { Bihongo } from "./system/src/core/Bihongo";
+import { Bihongo } from "bihongojs";
 
 const app = Bihongo.app({
   boot: boot,

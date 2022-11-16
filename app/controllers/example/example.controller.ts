@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Dinjectable } from "../../../system/src";
-import { Controller, Get } from "../../../system/src/core/decorator";
+import { Dinjectable } from "bihongojs";
+import { Controller, Get } from "bihongojs";
 import { decorateHtmlResponse } from "../../middlewares/common/decorateHtmlResponse";
 import { helloWorld } from "../../middlewares/helloWorld";
 import { ExampleService } from "./example.service";

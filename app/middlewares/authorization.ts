@@ -1,4 +1,4 @@
-import { Auth } from "../../system/src/auth/Auth";
+import { Auth } from "bihongojs";
 
 /**
  * simple middleware for authorization

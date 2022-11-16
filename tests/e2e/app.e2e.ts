@@ -1,7 +1,7 @@
+import { Bihongo } from "bihongojs";
 import request from "supertest";
 import { boot } from "../../app/app";
 import { routes } from "../../routes/web";
-import { Bihongo } from "../../system/src/core/Bihongo";
 
 const app = Bihongo.app({
   boot: boot,

@@ -1,4 +1,4 @@
-import { Uploader } from "../../../system/src/core/Disk";
+import { Uploader } from "bihongojs";
 
 type fields = {
   /**
