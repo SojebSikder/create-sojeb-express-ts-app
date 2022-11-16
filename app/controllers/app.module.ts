@@ -6,6 +6,7 @@ import { ExampleController } from "./example/example.controller";
 
 @Module({
   imports: [
+    // Config for Simple implementation of jwt auth. You can remove it or use it
     Auth.config({
       cookieName: appConfig.cookieName,
       jwt: {
