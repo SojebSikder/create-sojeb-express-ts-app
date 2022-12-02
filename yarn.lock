@@ -1169,10 +1169,10 @@ bignumber.js@9.0.0:
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.0.0.tgz#805880f84a329b5eac6e7cb6f8274b6d82bdf075"
   integrity sha512-t/OYhhJ2SD+YGBQcjY8GzzDHEk9f3nerxjtfa6tlMXfe7frs/WozhvCNoGvpM0P3bNf3Gq5ZRMlGr5f3r4/N8A==
 
-bihongojs@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/bihongojs/-/bihongojs-3.0.5.tgz#f00f57aeeff0b6381b6ff8627a4ad0d885162122"
-  integrity sha512-Rf7WAX+0apH5XkwHHBatxOduNobVculNinLqlkkGZNX0bQTRrTYyaXxVfvlkPpeghDWWYmw9JU06UwnSF73yAw==
+bihongojs@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/bihongojs/-/bihongojs-3.0.6.tgz#647443b4e7b55255c9d7c96d97c02a955cc4e956"
+  integrity sha512-Ge8YrAS/oSUhijnKhYR4CuJTAhblv3vrhCpHw0X4xBH+Hi1ozSF2KNCxC78wQjZTfMBvRNj5wfzO1U7oGyEcUg==
   dependencies:
     aws-sdk "^2.1231.0"
     bcrypt "^5.1.0"

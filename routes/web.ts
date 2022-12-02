@@ -2,7 +2,6 @@
 import { Express, Request, Response } from "express";
 // internal imports
 // middleware
-import { RouterResolver } from "bihongojs";
 import { AppModule } from "../app/controllers/app.module";
 
 /**
@@ -12,9 +11,6 @@ import { AppModule } from "../app/controllers/app.module";
 export function routes(app: Express) {
   // Initialize modules
   new AppModule();
-  // Initialize router
-  RouterResolver.resolve(app);
-
   /**
    * User custom router here
    */
